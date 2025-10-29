@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sair da Conta</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: "Poppins", sans-serif;
+  }
+
+  body {
+    background-color: #d9d9d9;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    padding: 10px;
+  }
+
+  .celular {
+    background-color: #0f1715;
+    width: 280px;
+    min-height: 540px;
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.4);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #0f1715;
+    color: #fff;
+    padding: 12px 15px;
+    font-size: 1rem;
+    border-bottom: 1px solid #2b2b2b;
+  }
+
+  header i {
+    font-size: 1.2rem;
+    cursor: pointer;
+  }
+
+  .conteudo {
+    flex: 1;
+    background-color: #f8f8f8;
+    margin: 25px 15px;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+  }
+
+  .conteudo h2 {
+    color: #141414;
+    font-size: 1rem;
+    margin-bottom: 15px;
+  }
+
+  .conteudo p {
+    color: #333;
+    font-size: 0.85rem;
+    margin-bottom: 25px;
+  }
+
+  .botoes {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+  }
+
+  button {
+    flex: 1;
+    padding: 8px;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background 0.2s ease;
+  }
+
+  .btn-voltar {
+    background-color: #ccc;
+    color: #111;
+  }
+
+  .btn-voltar:hover {
+    background-color: #aaa;
+  }
+
+  .btn-sair {
+    background-color: #b22b2b;
+    color: #fff;
+  }
+
+  .btn-sair:hover {
+    background-color: #941f1f;
+  }
+
+  footer {
+    background-color: #0f1715;
+    color: #fff;
+    text-align: center;
+    padding: 8px;
+    font-size: 0.8rem;
+    border-top: 1px solid #2b2b2b;
+  }
+</style>
+</head>
+
+<body>
+  <div class="celular">
+    <header>
+      <a href="configuracoes.html"><i class="fa-solid fa-arrow-left"></i></a>
+      <span>Sair da Conta</span>
+      <i class="fa-solid fa-right-from-bracket"></i>
+    </header>
+
+    <div class="conteudo">
+      <h2>Tem certeza que deseja sair?</h2>
+      <p>Ao sair, você será desconectado da sua conta e precisará fazer login novamente.</p>
+
+      <div class="botoes">
+        <button class="btn-voltar" onclick="window.location.href='configuracoes.html'">Cancelar</button>
+        <button class="btn-sair" onclick="confirmarSaida()">Sair</button>
+      </div>
+    </div>
+
+    <footer>
+      <p>© 2025 Sistema de Configurações</p>
+    </footer>
+  </div>
+
+  <script>
+    function confirmarSaida() {
+      const confirmacao = confirm("Deseja realmente sair da conta?");
+      if (confirmacao) {
+        alert("Você saiu da conta com sucesso!");
+        window.location.href = "cadastro.html"; // redireciona após sair
+      }
+    }
+  </script>
+</body>
+</html>
