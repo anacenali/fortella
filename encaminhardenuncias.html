@@ -3,8 +3,157 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Telas de Denúncias</title>
-  <link rel="stylesheet" href="encaminhardenuncias.css">
+  <title>Painel do Administrador - Denúncias</title>
+  <link href="https://fonts.googleapis.com/css2?family=Judson:wght@400;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "judson", sans-serif;
+    }
+
+    body {
+      background-color: #c6caca;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+      padding: 30px;
+    }
+
+    .app {
+      width: 90%;
+      max-width: 1000px;
+      background-color: #0e1312;
+      border-radius: 20px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 0 20px rgba(0,0,0,0.5);
+      padding: 25px;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    header .voltar {
+      font-size: 22px;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    h2 {
+      font-size: 22px;
+      font-weight: 600;
+    }
+
+    /* Telas */
+    .tela {
+      display: none;
+      flex-direction: column;
+      color: white;
+      background-color: #0e1312;
+      overflow-y: auto;
+      min-height: 500px;
+    }
+
+    .tela.ativa {
+      display: flex;
+    }
+
+    /* Cards */
+    .card {
+      background-color: #fff5f5;
+      color: #000;
+      border-radius: 12px;
+      padding: 15px;
+      margin-bottom: 15px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+
+    .card h3 {
+      margin-bottom: 8px;
+      color: #111;
+    }
+
+    .card button {
+      width: 100%;
+      background-color: #800020;
+      color: white;
+      border: none;
+      border-radius: 25px;
+      padding: 10px;
+      font-size: 14px;
+      margin-top: 10px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .card button:hover {
+      background-color: #a00028;
+    }
+
+    /* Botão de navegação */
+    .nav {
+      background-color: #444;
+      color: #fff;
+      border: none;
+      border-radius: 20px;
+      padding: 10px;
+      font-size: 14px;
+      margin-top: auto;
+      cursor: pointer;
+      align-self: flex-end;
+      transition: background 0.3s;
+    }
+
+    .nav:hover {
+      background-color: #666;
+    }
+
+    /* Opções (na tela Dúvidas) */
+    .opcao {
+      background-color: #97b7b0;
+      color: #000;
+      font-weight: 600;
+      text-align: center;
+      padding: 25px;
+      border-radius: 10px;
+      margin-top: 10px;
+    }
+
+    /* Usuários */
+    .usuarios {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 10px;
+    }
+
+    .usuarios button {
+      width: 100%;
+      background-color: #fff5f5;
+      color: #000;
+      border: none;
+      border-radius: 10px;
+      padding: 12px;
+      font-size: 16px;
+      text-align: left;
+      padding-left: 20px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .usuarios button:hover {
+      background-color: #f1dddd;
+    }
+
+  </style>
 </head>
 <body>
 
@@ -14,20 +163,20 @@
     <div class="tela ativa" id="tela-denuncias">
       <header>
         <span class="voltar" onclick="voltarInicio()">←</span>
-        <h2>Denúncias feitas:</h2>
+        <h2>Denúncias feitas</h2>
       </header>
 
       <div class="card">
         <h3>Denúncia 1</h3>
-        <p><strong>Autor da denúncia:</strong> Eduarda</p>
-        <p><strong>Descrição do ocorrido:</strong> Eu fui assaltada ontem à noite e levaram meus documentos e a minha bolsa.</p>
+        <p><strong>Autor:</strong> Eduarda</p>
+        <p><strong>Descrição:</strong> Fui assaltada ontem à noite e levaram meus documentos e bolsa.</p>
         <button>Encaminhar denúncia</button>
       </div>
 
       <div class="card">
         <h3>Denúncia 2</h3>
-        <p><strong>Autor da denúncia:</strong> Kaio</p>
-        <p><strong>Descrição do ocorrido:</strong> Eu fui agredido por um cara, eu quebrei a perna e o braço, acabei indo parar no hospital.</p>
+        <p><strong>Autor:</strong> Kaio</p>
+        <p><strong>Descrição:</strong> Fui agredido por um homem, quebrei a perna e o braço, precisei ir ao hospital.</p>
         <button>Encaminhar denúncia</button>
       </div>
 
@@ -101,8 +250,15 @@
 
   </div>
 
-  <script src="encaminhardenuncias.js"></script>
+  <script>
+    function mudarTela(id) {
+      document.querySelectorAll('.tela').forEach(t => t.classList.remove('ativa'));
+      document.getElementById(id).classList.add('ativa');
+    }
+    
+    function voltarInicio() {
+      mudarTela('tela-denuncias');
+    }
+  </script>
 </body>
 </html>
-
-
