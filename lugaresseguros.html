@@ -4,10 +4,128 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>App Configurações</title>
-  <link rel="stylesheet" href="lugares.css">
+  
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #0f1615;
+      color: #fff;
+    }
+    
+    header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 15px;
+      background: #111;
+      font-size: 18px;
+    }
+    
+    header button {
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 20px;
+      cursor: pointer;
+    }
+    
+    .tela {
+      padding: 20px;
+    }
+    
+    .menu {
+      list-style: none;
+      padding: 0;
+    }
+    
+    .menu li {
+      background: #f8f0f0;
+      color: #111;
+      margin: 8px 0;
+      padding: 15px;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+    
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    
+    form input, form button {
+      padding: 12px;
+      border-radius: 8px;
+      border: none;
+      font-size: 16px;
+    }
+    
+    form button {
+      background: #a21c34;
+      color: white;
+      cursor: pointer;
+    }
+    
+    .card {
+      background: #f8f0f0;
+      color: #111;
+      padding: 15px;
+      border-radius: 10px;
+      margin: 10px 0;
+    }
+    
+    .switch {
+      background: #f8f0f0;
+      color: #111;
+      padding: 15px;
+      border-radius: 10px;
+      margin: 10px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .escondido {
+      display: none;
+    }
+    
+    /* Popup de sair */
+    .popup {
+      background: #f8f0f0;
+      color: #111;
+      padding: 20px;
+      border-radius: 12px;
+      text-align: center;
+      margin: 100px auto;
+      width: 250px;
+    }
+    
+    .botoes {
+      display: flex;
+      justify-content: space-around;
+      margin-top: 15px;
+    }
+    
+    .btn-cancelar {
+      background: #ddd;
+      border: none;
+      padding: 8px 14px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    
+    .btn-sair {
+      background: #a21c34;
+      color: #fff;
+      border: none;
+      padding: 8px 14px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
-  <!-- Tela de Configurações -->
   <div class="tela" id="tela-config">
     <header>
       <h2>⚙️ Configurações</h2>
@@ -21,7 +139,6 @@
     </ul>
   </div>
 
-  <!-- Tela de Dados Pessoais -->
   <div class="tela escondido" id="tela-dados">
     <header>
       <button onclick="abrirTela('tela-config')">⬅</button>
@@ -36,7 +153,6 @@
     </form>
   </div>
 
-  <!-- Tela de Notificações -->
   <div class="tela escondido" id="tela-notificacoes">
     <header>
       <button onclick="abrirTela('tela-config')">⬅</button>
@@ -48,7 +164,6 @@
     <div class="card">⏰ Lembrete</div>
   </div>
 
-  <!-- Tela de Segurança -->
   <div class="tela escondido" id="tela-seguranca">
     <header>
       <button onclick="abrirTela('tela-config')">⬅</button>
@@ -68,7 +183,6 @@
     </div>
   </div>
 
-  <!-- Tela de Idiomas -->
   <div class="tela escondido" id="tela-idioma">
     <header>
       <button onclick="abrirTela('tela-config')">⬅</button>
@@ -84,7 +198,6 @@
     </ul>
   </div>
 
-  <!-- Tela de Sair da Conta -->
   <div class="tela escondido" id="tela-sair">
     <header>
       <button onclick="abrirTela('tela-config')">⬅</button>
@@ -99,6 +212,26 @@
     </div>
   </div>
 
-  <script src="lugaresseguros.js"></script>
+  <script>
+    function abrirTela(idTela) {
+      // esconde todas as telas
+      document.querySelectorAll(".tela").forEach(t => t.classList.add("escondido"));
+      // mostra a tela escolhida
+      document.getElementById(idTela).classList.remove("escondido");
+    }
+    
+    // Ação do botão "Sair"
+    document.addEventListener("DOMContentLoaded", () => {
+      const btnSair = document.querySelector(".btn-sair");
+      
+      if (btnSair) {
+        btnSair.addEventListener("click", () => {
+          alert("Você saiu da conta!");
+          // Opcional: Voltar para a tela de configurações após o alerta
+          // abrirTela('tela-config'); 
+        });
+      }
+    });
+  </script>
 </body>
 </html>
