@@ -13,156 +13,139 @@
         rel="stylesheet">
 
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Judson', sans-serif;
-        }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: "judson", sans-serif;
+    }
 
-        body {
-            background-color: #E5E5E5;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
+    body {
+      background-color: #d9e4df;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+      padding: 10px;
+    }
 
-        .container {
-            width: 250px;
-            height: 500px;
-            background-color: #527D6F;
-            border-radius: 4px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-        }
+    .celular {
+      background-color: #c9d9d3;
+      width: 280px;
+      min-height: 550px;
+      border-radius: 15px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
 
-        h4,
-        span {
-            font-family: "Judson", serif;
-            font-weight: 700;
-            color: #0F171C;
-        }
+    /* Header */
+    header {
+      background-color: #78a89b;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 15px;
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
 
-        /* topo */
-        .header {
-            background-color: #527D6F;
-            color: #0F171C;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 10px;
-        }
+    header i {
+      font-size: 1.3rem;
+      color: #0f241e;
+    }
 
-        .header img {
-            width: 20px;
-            height: 20px;
-            cursor: pointer;
-        }
+    /* Imagem diária */
+    .imagem-diaria {
+      background-color: #4e7f73;
+      border-radius: 8px;
+      margin: 10px;
+      height: 90px;
+      padding: 10px;
+      color: #f2f2f2;
+      position: relative;
+    }
 
-        /* imagem diária */
-        .daily {
-            background-color: #40685C;
-            margin: 10px;
-            height: 90px;
-            border-radius: 6px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 10px;
-            color: #fff;
-        }
+    .imagem-diaria p {
+      font-size: 0.85rem;
+    }
 
-        .daily img {
-            width: 60px;
-            height: 60px;
-            border-radius: 4px;
-            object-fit: cover;
-            transform: rotate(-5deg);
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-        }
+    .imagem-diaria img {
+      width: 70px;
+      position: absolute;
+      top: 8px;
+      right: 10px;
+      transform: rotate(10deg);
+      border-radius: 6px;
+      box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.3);
+    }
 
-        /* título da seção */
-        .title-section {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 14px;
-            color: #0F171C;
-        }
+    /* Seção Coração */
+    .secao {
+      background-color: #4e7f73;
+      color: #fff;
+      font-weight: 500;
+      margin: 0 10px;
+      border-radius: 6px;
+      padding: 6px 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
 
-        .title-section h4 {
-            font-size: 16px;
-            cursor: pointer;
-            transition: color 0.2s;
-        }
+    .secao i {
+      color: #fff;
+    }
 
-        .title-section h4:hover {
-            color: #EAEAEA;
-        }
+    /* Galeria */
+    .galeria {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      padding: 10px;
+    }
 
-        .title-section button {
-            background: transparent;
-            border: none;
-            color: #0F171C;
-            font-size: 14px;
-            cursor: pointer;
-        }
+    .galeria img {
+      width: 100%;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
 
-        /* galeria de imagens */
-        .gallery {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 6px;
-            padding: 10px;
-            flex: 1;
-            overflow-y: auto;
-        }
-
-        .gallery img {
-            max-width: 100px; /* limite de largura */
-            height: auto;
-            border-radius: 6px;
-            cursor: pointer;
-            border: 2px solid transparent;
-            transition: transform 0.2s, border 0.2s;
-            object-fit: contain;
-        }
-
-        .gallery img:hover {
-            transform: scale(1.03);
-            border-color: #516e65;
-        }
+    .galeria img:hover {
+      transform: scale(1.05);
+    }
     </style>
 </head>
 
 <body>
 
-    <div class="container">
+    <div class="celular">
         <!-- topo -->
-        <div class="header">
-            <img src="iconinicio.png" alt="Ícone Início" onclick="abrirInicio()">
-            <h4>Marinho</h4>
-            <img src="iconpessoal.png" alt="Ícone perfil" onclick="abrirPerfil()">
-        </div>
+    <header>
+      <i class="fa-solid fa-house"></i>
+      <span>Marinho</span>
+      <i class="fa-solid fa-user"></i>
+    </header>
 
         <!-- imagem diária -->
-        <div class="daily">
-            <span>Imagem diária</span>
-            <img src="imgdiaria.png" alt="Imagem diária">
-        </div>
+    <div class="imagem-diaria">
+      <p>Imagem diária</p>
+      <img src="img/imagem_diaria.png" alt="Imagem diária">
+    </div>
 
-        <!-- título da seção -->
-        <div class="title-section">
-            <h4 onclick="abrirRotas()">Marinho</h4>
-            <button onclick="abrirInicio()">←</button>
-        </div>
+        <!-- botão menu -->
+    <div class="secao">
+      <h4>Marinho</h4>
+      <button onclick="abrirInicio()"></button>
+      <i class="fa-solid fa-arrow-left"></i>
+    </div>
 
         <!-- galeria -->
-        <div class="gallery">
+        <div class="galeria">
             <img src="tartaruga.png" alt="Desenho 1" onclick="abrirDesenho('tartaruga.png')">
             <img src="sereia.png" alt="Desenho 2" onclick="abrirDesenho('sereia.png')">
             <img src="sapo.png" alt="Desenho 3" onclick="abrirDesenho('sapo.png')">
