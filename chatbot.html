@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Chatbot - Fortella</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <style>
 * {
   margin: 0;
@@ -41,6 +42,23 @@ html, body {
   align-items: center;
   gap: 10px;
   flex-shrink: 0;
+}
+
+.chat-header .back-btn {
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.chat-header .back-btn:hover {
+  transform: scale(1.1);
+}
+
+.chat-user {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .chat-user img {
@@ -189,6 +207,7 @@ html, body {
 
 <div class="chat-app">
   <header class="chat-header">
+    <i class="fa-solid fa-arrow-left back-btn" onclick="voltarPopular()"></i>
     <div class="chat-user">
       <img src="https://i.imgur.com/V7b1ZtM.png" alt="Bot">
       <div class="chat-info">
@@ -214,6 +233,10 @@ html, body {
 </div>
 
 <script>
+function voltarPopular() {
+  window.location.href = "popular.html";
+}
+
 const chatBox = document.getElementById("chat-box");
 const userInput = document.getElementById("userInput");
 const sendBtn = document.getElementById("sendBtn");
@@ -253,45 +276,27 @@ function botReply(userText, typingDiv) {
   let response = "Desculpe, não entendi. Pode explicar melhor?";
   userText = userText.toLowerCase();
 
-  // Saudações
   if (userText.includes("olá") || userText.includes("oi") || userText.includes("bom dia") || userText.includes("boa tarde") || userText.includes("boa noite")) {
     response = "Olá! 😊 Como posso te ajudar hoje?";
-  }
-  // Pedidos de ajuda
-  else if (userText.includes("ajuda") || userText.includes("socorro") || userText.includes("emergência")) {
+  } else if (userText.includes("ajuda") || userText.includes("socorro") || userText.includes("emergência")) {
     response = "Claro! Me conte o que aconteceu para que eu possa ajudar. ⚠️";
-  }
-  // Roubo / Assalto
-  else if (userText.includes("roub") || userText.includes("assalto")) {
+  } else if (userText.includes("roub") || userText.includes("assalto")) {
     response = "Sinto muito 😢. Deseja que eu envie um alerta para seus contatos de emergência?";
-  }
-  // Confirmações
-  else if (userText.includes("sim") || userText.includes("ok")) {
+  } else if (userText.includes("sim") || userText.includes("ok")) {
     response = "🚨 Alerta enviado! Fique em local seguro até a ajuda chegar.";
-  }
-  else if (userText.includes("não")) {
+  } else if (userText.includes("não")) {
     response = "Tudo bem, estou aqui se precisar de algo mais 🙂";
-  }
-  // Agradecimentos
-  else if (userText.includes("obrigad") || userText.includes("valeu")) {
+  } else if (userText.includes("obrigad") || userText.includes("valeu")) {
     response = "De nada 💛. Estou sempre aqui para ajudar!";
-  }
-  // Perguntas sobre o bot
-  else if (userText.includes("quem é você") || userText.includes("seu nome")) {
+  } else if (userText.includes("quem é você") || userText.includes("seu nome")) {
     response = "Eu sou seu assistente virtual da Fortella 🤖.";
-  }
-  else if (userText.includes("o que você faz")) {
+  } else if (userText.includes("o que você faz")) {
     response = "Posso te ajudar em situações de emergência e fornecer informações rápidas. 🛡️";
-  }
-  // Perguntas gerais
-  else if (userText.includes("clima") || userText.includes("tempo")) {
+  } else if (userText.includes("clima") || userText.includes("tempo")) {
     response = "Não consigo informar o clima real, mas é sempre bom estar preparado! ☀️🌧️";
-  }
-  else if (userText.includes("hora") || userText.includes("que horas")) {
+  } else if (userText.includes("hora") || userText.includes("que horas")) {
     response = `Agora são ${getTime()} ⏰`;
-  }
-  // Mensagens curtas
-  else if (userText.length < 3) {
+  } else if (userText.length < 3) {
     response = "Pode escrever um pouco mais? 😅";
   }
 
@@ -318,4 +323,3 @@ userInput.addEventListener("keypress", e => {
 </script>
 </body>
 </html>
-

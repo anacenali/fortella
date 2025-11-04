@@ -1,20 +1,18 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Coração</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Judson:wght@400;700&family=Poppins:wght@400;500;600&display=swap"
-    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Judson:wght@400;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+
   <style>
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: "judson", sans-serif;
+      font-family: "Judson", sans-serif;
     }
 
     body {
@@ -52,6 +50,12 @@
     header i {
       font-size: 1.3rem;
       color: #0f241e;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    header i:hover {
+      color: #ffffff;
     }
 
     /* Imagem diária */
@@ -94,6 +98,13 @@
 
     .secao i {
       color: #fff;
+      cursor: pointer;
+      font-size: 1.1rem;
+      transition: 0.3s;
+    }
+
+    .secao i:hover {
+      color: #c9d9d3;
     }
 
     /* Galeria */
@@ -121,7 +132,7 @@
 <body>
   <div class="celular">
     <header>
-      <i class="fa-solid fa-house"></i>
+      <i class="fa-solid fa-arrow-left" onclick="voltarInicio()"></i>
       <span>Coração</span>
       <i class="fa-solid fa-user"></i>
     </header>
@@ -132,9 +143,8 @@
     </div>
 
     <div class="secao">
-      <h4 onclick="abrirLocalseguro()">Coração</h4>
-      <button onclick="abrirInicio()"></button>
-      <i class="fa-solid fa-arrow-left"></i>
+      <h4>Coração</h4>
+      <i class="fa-solid fa-heart"></i>
     </div>
 
     <div class="galeria">
@@ -148,23 +158,19 @@
   </div>
 
   <script>
-    // Quando clica em uma imagem, guarda o link e vai pra outra tela
-    const imagens = document.querySelectorAll('.galeria img');
+    // Voltar para a tela inicial
+    function voltarInicio() {
+      window.location.href = "tela_inicio.html";
+    }
 
+    // Quando clicar em uma imagem, guarda o link e vai pra tela de detalhe
+    const imagens = document.querySelectorAll('.galeria img');
     imagens.forEach(img => {
       img.addEventListener('click', () => {
         localStorage.setItem('imagemSelecionada', img.src);
         window.location.href = 'detalhe.html';
       });
     });
-
-
-    function abrirLocalseguro() {
-      window.location.href = "lugaresseguro.html";
-    }
-
-
   </script>
 </body>
-
 </html>
