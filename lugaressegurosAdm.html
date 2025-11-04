@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Painel Admin — Lugares Seguros</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      margin: 0;
+      background-color: #0F171C;
+      color: #EAEAEA;
+    }
+
+    header {
+      background-color: #162024;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    }
+
+    header h1 {
+      font-size: 1.5rem;
+      color: #EAEAEA;
+    }
+
+    .user-icon {
+      background-color: #527D6F;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      color: #fff;
+    }
+
+    main {
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .card-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 1.5rem;
+      width: 100%;
+      max-width: 1100px;
+    }
+
+    .card {
+      background-color: #EAEAEA;
+      color: #0F171C;
+      border-radius: 15px;
+      padding: 1.5rem;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+      transition: transform 0.2s ease;
+    }
+
+    .card:hover {
+      transform: scale(1.02);
+    }
+
+    .card h3 {
+      color: #780C28;
+      margin-bottom: 0.4rem;
+    }
+
+    .card p {
+      margin: 0.2rem 0;
+      font-size: 0.9rem;
+    }
+
+    .edit-btn {
+      margin-top: 2rem;
+      background-color: #780C28;
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      padding: 0.8rem 1.8rem;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .edit-btn:hover {
+      background-color: #961b38;
+    }
+
+    /* Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 10;
+      left: 0; top: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.6);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      background-color: #fff;
+      padding: 2rem;
+      border-radius: 12px;
+      width: 400px;
+      color: #0F171C;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+    }
+
+    .modal-content h2 {
+      color: #780C28;
+      margin-bottom: 1rem;
+    }
+
+    .modal-content label {
+      display: block;
+      font-weight: 500;
+      margin-top: 1rem;
+    }
+
+    .modal-content input {
+      width: 100%;
+      padding: 0.5rem;
+      margin-top: 0.3rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .modal-content button {
+      margin-top: 1.5rem;
+      background-color: #527D6F;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 0.7rem 1.2rem;
+      cursor: pointer;
+    }
+
+    .close {
+      float: right;
+      font-size: 1.3rem;
+      cursor: pointer;
+      color: #aaa;
+    }
+
+    .close:hover {
+      color: #000;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Lugares Seguros — Admin</h1>
+    <div class="user-icon">👤</div>
+  </header>
+
+  <main>
+    <div class="card-container" id="lugaresContainer"></div>
+
+    <button class="edit-btn" id="editarBtn">Adicionar Lugar</button>
+  </main>
+
+  <!-- Modal -->
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <span class="close" id="closeModal">&times;</span>
+      <h2>Adicionar Lugar</h2>
+
+      <label>Nome do Lugar</label>
+      <input type="text" id="nomeLugar" placeholder="Ex: Escola Municipal João da Silva">
+
+      <label>Descrição</label>
+      <input type="text" id="descricaoLugar" placeholder="Local monitorado, com presença de segurança.">
+
+      <label>Endereço</label>
+      <input type="text" id="enderecoLugar" placeholder="Rua das Flores, 123 - Londrina - PR">
+
+      <label>Latitude</label>
+      <input type="text" id="latitudeLugar" placeholder="-23.304600">
+
+      <label>Longitude</label>
+      <input type="text" id="longitudeLugar" placeholder="-51.169200">
+
+      <label>Raio de Segurança (m)</label>
+      <input type="number" id="raioLugar" placeholder="150">
+
+      <button id="salvarLugar">Salvar</button>
+    </div>
+  </div>
+
+  <script>
+    const lugares = [
+      {
+        nome: "Escola Municipal João da Silva",
+        descricao: "Local monitorado, com presença constante de segurança escolar.",
+        endereco: "Rua das Flores, 123 - Centro, Londrina - PR",
+        latitude: "-23.304600",
+        longitude: "-51.169200",
+        raio: 150
+      },
+      {
+        nome: "Unidade de Saúde Jardim Esperança",
+        descricao: "Posto de saúde com câmeras externas e apoio policial próximo.",
+        endereco: "Av. Esperança, 45 - Jardim Esperança, Londrina - PR",
+        latitude: "-23.312345",
+        longitude: "-51.162334",
+        raio: 100
+      },
+      {
+        nome: "Praça da Paz",
+        descricao: "Praça bem iluminada com câmeras públicas e movimento constante.",
+        endereco: "Praça Central, s/n - Vila Nova, Londrina - PR",
+        latitude: "-23.310987",
+        longitude: "-51.165432",
+        raio: 200
+      }
+    ];
+
+    const container = document.getElementById("lugaresContainer");
+
+    function renderizarLugares() {
+      container.innerHTML = "";
+      lugares.forEach((lugar, index) => {
+        const card = document.createElement("div");
+        card.classList.add("card");
+        card.innerHTML = `
+          <h3>Lugar ${index + 1}</h3>
+          <p><strong>${lugar.nome}</strong></p>
+          <p>${lugar.descricao}</p>
+          <p>${lugar.endereco}</p>
+          <p>Latitude: ${lugar.latitude}</p>
+          <p>Longitude: ${lugar.longitude}</p>
+          <p>Raio de Segurança: ${lugar.raio} metros</p>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    renderizarLugares();
+
+    const modal = document.getElementById("modal");
+    const btn = document.getElementById("editarBtn");
+    const closeModal = document.getElementById("closeModal");
+    const salvarLugar = document.getElementById("salvarLugar");
+
+    btn.onclick = () => modal.style.display = "flex";
+    closeModal.onclick = () => modal.style.display = "none";
+    window.onclick = e => { if (e.target == modal) modal.style.display = "none"; }
+
+    salvarLugar.onclick = () => {
+      const novoLugar = {
+        nome: document.getElementById("nomeLugar").value,
+        descricao: document.getElementById("descricaoLugar").value,
+        endereco: document.getElementById("enderecoLugar").value,
+        latitude: document.getElementById("latitudeLugar").value,
+        longitude: document.getElementById("longitudeLugar").value,
+        raio: document.getElementById("raioLugar").value
+      };
+
+      if (novoLugar.nome && novoLugar.descricao) {
+        lugares.push(novoLugar);
+        renderizarLugares();
+        modal.style.display = "none";
+        document.querySelectorAll("#modal input").forEach(input => input.value = "");
+      } else {
+        alert("Preencha pelo menos o nome e a descrição do lugar.");
+      }
+    };
+  </script>
+</body>
+</html>
