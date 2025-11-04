@@ -1,13 +1,11 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sistema de Denúncia</title>
   <link href="https://fonts.googleapis.com/css2?family=Judson:wght@400;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
-    /* ======== GERAL ======== */
     body {
       font-family: 'Judson', sans-serif;
       background-color: #e9e9e9;
@@ -25,7 +23,6 @@
       font-weight: 600;
     }
 
-    /* ======== TELAS ======== */
     .tela {
       background-color: #0e1312;
       border-radius: 15px;
@@ -69,7 +66,6 @@
       transform: scale(1.2);
     }
 
-    /* ======== TEXTAREA ======== */
     textarea {
       width: 100%;
       height: 120px;
@@ -86,7 +82,6 @@
       outline: 2px solid #800020;
     }
 
-    /* ======== BOTÕES ======== */
     button {
       background-color: #800020;
       color: white;
@@ -104,7 +99,6 @@
       transform: scale(1.05);
     }
 
-    /* ======== CHECKMARK ======== */
     .checkmark {
       font-size: 100px;
       color: #2ecc71;
@@ -113,22 +107,11 @@
     }
 
     @keyframes bounce {
-      0% {
-        transform: scale(0.6);
-        opacity: 0.2;
-      }
-
-      60% {
-        transform: scale(1.2);
-        opacity: 1;
-      }
-
-      100% {
-        transform: scale(1);
-      }
+      0% { transform: scale(0.6); opacity: 0.2; }
+      60% { transform: scale(1.2); opacity: 1; }
+      100% { transform: scale(1); }
     }
 
-    /* ======== CARD ======== */
     .card {
       background-color: #222;
       padding: 20px;
@@ -150,6 +133,7 @@
 <body>
   <div class="tela" id="tela1">
     <header>
+      <a href="flores.html" class="voltar">←</a>
       <h2>Denúncia</h2>
     </header>
     <textarea id="descricao" placeholder="Descrição do Ocorrido"></textarea>
@@ -185,12 +169,10 @@
   <script>
     function enviarDenuncia() {
       const descricao = document.getElementById("descricao").value.trim();
-
       if (descricao === "") {
         alert("Por favor, descreva o ocorrido antes de enviar.");
         return;
       }
-
       document.getElementById("tela1").style.display = "none";
       document.getElementById("tela2").style.display = "flex";
     }
@@ -217,5 +199,4 @@
     }
   </script>
 </body>
-
 </html>
