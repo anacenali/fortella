@@ -1,106 +1,142 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Idioma</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-<style>
-  * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: "Poppins", sans-serif;
-  }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Idioma</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: "Poppins", sans-serif;
+    }
 
-  body {
-    background-color: #d9d9d9;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    min-height: 100vh;
-    padding: 10px;
-  }
+    body {
+      background: linear-gradient(135deg, #16222A, #3A6073);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
 
-  .celular {
-    background-color: #0f1715;
-    width: 280px;
-    min-height: 540px;
-    border-radius: 15px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.4);
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-  }
+    .celular {
+      background-color: #fff;
+      width: 320px;
+      min-height: 550px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      animation: fadeIn 0.8s ease;
+    }
 
-  header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background-color: #0f1715;
-    color: #fff;
-    padding: 12px 15px;
-    font-size: 1rem;
-    border-bottom: 1px solid #2b2b2b;
-  }
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
 
-  header i {
-    font-size: 1.2rem;
-    cursor: pointer;
-  }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
 
-  .conteudo {
-    flex: 1;
-    background-color: #f8f8f8;
-    margin: 25px 15px;
-    padding: 15px;
-    border-radius: 10px;
-  }
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: linear-gradient(90deg, #0f1715, #b22b2b);
+      color: #fff;
+      padding: 14px 16px;
+      font-size: 1rem;
+    }
 
-  .conteudo h2 {
-    color: #141414;
-    text-align: center;
-    font-size: 1rem;
-    margin-bottom: 15px;
-  }
+    header a {
+      color: #fff;
+      text-decoration: none;
+    }
 
-  select {
-    width: 100%;
-    padding: 10px;
-    border-radius: 8px;
-    border: 1px solid #ccc;
-    font-size: 0.9rem;
-    background-color: #fff;
-    color: #111;
-    outline: none;
-  }
+    header i {
+      font-size: 1.3rem;
+      cursor: pointer;
+    }
 
-  button {
-    width: 100%;
-    margin-top: 20px;
-    background-color: #b22b2b;
-    color: #fff;
-    border: none;
-    padding: 8px;
-    border-radius: 8px;
-    font-size: 0.9rem;
-    cursor: pointer;
-    transition: background 0.2s ease;
-  }
+    .conteudo {
+      flex: 1;
+      background-color: #f9f9f9;
+      margin: 20px;
+      padding: 15px;
+      border-radius: 12px;
+      box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.05);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
 
-  button:hover {
-    background-color: #941f1f;
-  }
+    .conteudo h2 {
+      color: #222;
+      text-align: center;
+      font-size: 1.1rem;
+      margin-bottom: 20px;
+    }
 
-  footer {
-    background-color: #0f1715;
-    color: #fff;
-    text-align: center;
-    padding: 8px;
-    font-size: 0.8rem;
-    border-top: 1px solid #2b2b2b;
-  }
-</style>
+    select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      background-color: #fff;
+      color: #111;
+      outline: none;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+
+    select {
+      border-color: #b22b2b;
+      box-shadow: 0 0 6px rgba(178, 43, 43, 0.3);
+    }
+
+    button {
+      width: 100%;
+      margin-top: 25px;
+      background: linear-gradient(90deg, #b22b2b, #8b1e1e);
+      color: #fff;
+      border: none;
+      padding: 10px;
+      border-radius: 10px;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: transform 0.2s, background 0.3s;
+    }
+
+    button {
+      transform: scale(1.03);
+      background: linear-gradient(90deg, #941f1f, #b22b2b);
+    }
+
+    .mensagem {
+      text-align: center;
+      color: green;
+      font-weight: 500;
+      font-size: 0.9rem;
+      margin-top: 15px;
+      display: none;
+    }
+
+    footer {
+      background-color: #0f1715;
+      color: #fff;
+      text-align: center;
+      padding: 10px;
+      font-size: 0.8rem;
+    }
+  </style>
 </head>
 
 <body>
@@ -113,7 +149,6 @@
 
     <div class="conteudo">
       <h2>Selecione o Idioma</h2>
-
       <select id="idioma">
         <option value="pt-BR">Português (Brasil)</option>
         <option value="en-US">Inglês (EUA)</option>
@@ -121,21 +156,20 @@
         <option value="fr-FR">Francês</option>
         <option value="de-DE">Alemão</option>
         <option value="it-IT">Italiano</option>
-      </select>
-
-      <button onclick="salvarIdioma()">Salvar Idioma</button>
+      </select> <button onclick="salvarIdioma()">Salvar Idioma</button>
+      <div class="mensagem" id="mensagemSucesso">Idioma alterado com sucesso!</div>
     </div>
 
     <footer>
       <p>© 2025 Sistema de Configurações</p>
     </footer>
-  </div>
 
-  <script>
-    function salvarIdioma() {
-      const idioma = document.getElementById("idioma").value;
-      alert("Idioma alterado para: " + idioma);
-    }
-  </script>
+    <script>
+      function salvarIdioma() {
+        const idioma = document.getElementById("idioma").value;
+        alert("Idioma alterado para: " + idioma);
+      }
+    </script>
 </body>
+
 </html>
