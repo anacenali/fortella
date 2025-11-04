@@ -1,23 +1,18 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flores - Fortella</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flores</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Judson:wght@400;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Judson:wght@400;700&family=Poppins:wght@400;500;600&display=swap"
-        rel="stylesheet">
-
-    <style>
+  <style>
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: "judson", sans-serif;
+      font-family: "Judson", serif;
     }
 
     body {
@@ -40,7 +35,8 @@
       flex-direction: column;
     }
 
-    /* Header */
+
+    /* Cabeçalho */
     header {
       background-color: #78a89b;
       color: #fff;
@@ -55,6 +51,12 @@
     header i {
       font-size: 1.3rem;
       color: #0f241e;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    header i:hover {
+      color: #ffffff;
     }
 
     /* Imagem diária */
@@ -82,7 +84,6 @@
       box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.3);
     }
 
-    /* Seção Coração */
     .secao {
       background-color: #4e7f73;
       color: #fff;
@@ -97,6 +98,13 @@
 
     .secao i {
       color: #fff;
+      cursor: pointer;
+      font-size: 1.1rem;
+      transition: 0.3s;
+    }
+
+    .secao i:hover {
+      color: #c9d9d3;
     }
 
     /* Galeria */
@@ -118,61 +126,52 @@
     .galeria img:hover {
       transform: scale(1.05);
     }
-    </style>
+  </style>
 </head>
 
 <body>
 
-    <div class="celular">
-        <!-- topo -->
+  <div class="celular">
+    
     <header>
-      <i class="fa-solid fa-house"></i>
+      <i class="fa-solid fa-arrow-left" onclick="voltarTelaInicial()"></i>
       <span>Flores</span>
       <i class="fa-solid fa-user"></i>
     </header>
 
-        <!-- imagem diária -->
+    <!-- Imagem diária -->
     <div class="imagem-diaria">
       <p>Imagem diária</p>
       <img src="img/imagem_diaria.png" alt="Imagem diária">
     </div>
 
-        <!-- botão menu -->
     <div class="secao">
       <h4>Flores</h4>
-      <button onclick="abrirInicio()"></button>
-      <i class="fa-solid fa-arrow-left"></i>
+      <i class="fa-solid fa-seedling"></i>
     </div>
 
-        <!-- galeria -->
-        <div class="galeria">
-            <img src="baldeFlor.png" alt="Desenho 1" onclick="abrirDesenho('baldeFlor.png')">
-            <img src="floress.png" alt="Desenho 2" onclick="abrirDesenho('floress.png')">
-            <img src="flor3.png" alt="Desenho 3" onclick="abrirDesenho('flor3.png')">
-            <img src="flor4.png" alt="Desenho 4" onclick="abrirDesenho('flor4.png')">
-            <img src="flor5.png" alt="Desenho 5" onclick="abrirDesenho('flor5.png')">
-            <img src="flor6.png" alt="Desenho 6" onclick="abrirDesenho('flor6.png')">
-            <img src="flor7.png" alt="Desenho 7" onclick="abrirDesenho('flor7.png')">
-        </div>
+  
+    <!-- Galeria -->
+    <div class="galeria">
+      <img src="baldeFlor.png" alt="Desenho 1" onclick="abrirDesenho('baldeFlor.png')">
+      <img src="floress.png" alt="Desenho 2" onclick="abrirDesenho('floress.png')">
+      <img src="flor3.png" alt="Desenho 3" onclick="abrirDesenho('flor3.png')">
+      <img src="flor4.png" alt="Desenho 4" onclick="abrirDesenho('flor4.png')">
+      <img src="flor5.png" alt="Desenho 5" onclick="abrirDesenho('flor5.png')">
+      <img src="flor6.png" alt="Desenho 6" onclick="abrirDesenho('flor6.png')">
+      <img src="flor7.png" alt="Desenho 7" onclick="abrirDesenho('flor7.png')">
     </div>
+  </div>
 
-    <script>
-        function abrirInicio() {
-            window.location.href = "inicio.html";
-        }
+  <script>
+    function voltarTelaInicial() {
+      window.location.href = "tela_inicio.html";
+    }
 
-        function abrirPerfil() {
-            window.location.href = "perfil.html";
-        }
-
-        function abrirDenuncias() {
-            window.location.href = "denuncias.html";
-        }
-
-        function abrirDesenho(img) {
-            window.location.href = "desenho.html?img=" + img;
-        }
-    </script>
+    function abrirDesenho(img) {
+      window.location.href = "desenho.html?img=" + img;
+    }
+  </script>
 
 </body>
 
