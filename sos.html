@@ -4,11 +4,115 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SOS</title>
-  <link rel="stylesheet" href="botaosos.css" />
+  <style>
+    /* ====== ESTILOS GERAIS ====== */
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #0e1412;
+      color: white;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ====== TOPO ====== */
+    .top-bar {
+      background-color: #111816;
+      display: flex;
+      align-items: center;
+      padding: 10px;
+      border-bottom: 1px solid #333;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    .back-btn {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 22px;
+      margin-right: 10px;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .back-btn:hover {
+      transform: scale(1.2);
+    }
+
+    h1 {
+      flex-grow: 1;
+      text-align: center;
+      margin: 0;
+      font-size: 18px;
+      letter-spacing: 1px;
+    }
+
+    /* ====== CONTEÚDO PRINCIPAL ====== */
+    .content {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .sos-container {
+      background-color: #6e0d26;
+      padding: 40px;
+      border-radius: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 0 25px rgba(110, 13, 38, 0.5);
+    }
+
+    /* ====== BOTÃO SOS ====== */
+    .sos-button {
+      background-color: #fff8f8;
+      border: none;
+      border-radius: 50%;
+      width: 140px;
+      height: 140px;
+      font-size: 22px;
+      color: black;
+      font-weight: bold;
+      position: relative;
+      cursor: pointer;
+      transition: transform 0.2s ease, background 0.3s;
+      box-shadow: 0 0 15px rgba(255, 0, 0, 0.2);
+    }
+
+    .sos-button:hover {
+      transform: scale(1.05);
+    }
+
+    .sos-button:active {
+      background-color: #ffdddd;
+      transform: scale(0.95);
+    }
+
+    /* ====== PONTO VERMELHO PISCANTE ====== */
+    .dot {
+      position: absolute;
+      bottom: 15px;
+      right: 20px;
+      width: 8px;
+      height: 8px;
+      background-color: red;
+      border-radius: 50%;
+      animation: blink 1s infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.2; }
+    }
+  </style>
 </head>
 <body>
   <header class="top-bar">
-    <button class="back-btn">←</button>
+    <button class="back-btn" onclick="history.back()">←</button>
     <h1>SOS</h1>
   </header>
 
@@ -21,6 +125,12 @@
     </div>
   </main>
 
-  <script src="botaosos.js"></script>
+  <script>
+    const sosButton = document.getElementById('sosButton');
+
+    sosButton.addEventListener('click', () => {
+      alert('⚠️ Pedido de ajuda enviado! A equipe de emergência foi notificada.');
+    });
+  </script>
 </body>
 </html>
