@@ -1,16 +1,196 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Contatos de Emergência</title>
-  <link rel="stylesheet" href="contato.css">
   <link
-        href="https://fonts.googleapis.com/css2?family=Judson:wght@400;700&family=Poppins:wght@400;500;600&display=swap"
-        rel="stylesheet">
+    href="https://fonts.googleapis.com/css2?family=Judson:wght@400;700&family=Poppins:wght@400;500;600&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Judson", sans-serif;
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #d9e4df;
+    }
+
+    /* ======== TELAS ======== */
+    .tela {
+      width: 280px;
+      background-color: #0e1312;
+      color: #fff;
+      text-align: center;
+      padding: 20px;
+      border-radius: 15px;
+      display: none;
+      flex-direction: column;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      position: relative;
+    }
+
+    .tela.ativa {
+      display: flex;
+      min-height: 550px;
+      box-shadow: 0 0 12px rgba(0, 0, 0, 0.25);
+      opacity: 1;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      font-size: 20px;
+      font-family: "Poppins", sans-serif;
+      font-weight: 600;
+    }
+
+    /* ======== BOTÃO VOLTAR ======== */
+    .voltar {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 22px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .voltar:hover {
+      color: #c20f10;
+      transform: scale(1.2);
+    }
+
+    /* ======== LISTA DE CONTATOS ======== */
+    .lista-contatos {
+      background-color: #fff5f5;
+      border-radius: 12px;
+      color: #000;
+      padding: 15px;
+      text-align: left;
+      margin-bottom: 20px;
+      overflow-y: auto;
+      max-height: 300px;
+      box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .contato {
+      border-bottom: 1px solid #ccc;
+      padding: 8px 0;
+      transition: background 0.2s;
+    }
+
+    .contato:last-child {
+      border: none;
+    }
+
+    .contato:hover {
+      background-color: #f8eaea;
+    }
+
+    .contato span {
+      display: block;
+    }
+
+    .contato button {
+      background: none;
+      border: none;
+      color: #800020;
+      cursor: pointer;
+      font-size: 13px;
+      float: right;
+      transition: color 0.3s;
+    }
+
+    .contato button:hover {
+      color: #c20f10;
+    }
+
+    #btnAdicionar {
+      background-color: #800020;
+      color: white;
+      border: none;
+      padding: 10px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 15px;
+      font-family: "Poppins", sans-serif;
+      transition: 0.3s;
+    }
+
+    #btnAdicionar:hover {
+      background-color: #c20f10;
+      transform: scale(1.05);
+    }
+
+    /* ======== FORMULÁRIO ======== */
+    .icone {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 15px;
+    }
+
+    .avatar {
+      width: 80px;
+      height: 80px;
+      background-color: #800020;
+      border-radius: 50%;
+      box-shadow: 0 0 10px rgba(128, 0, 32, 0.4);
+    }
+
+    form {
+      background-color: #fff5f5;
+      padding: 15px;
+      border-radius: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      color: #000;
+    }
+
+    form input {
+      border: none;
+      border-bottom: 1px solid #888;
+      background: none;
+      padding: 8px;
+      outline: none;
+      font-family: "Poppins", sans-serif;
+      font-size: 14px;
+    }
+
+    form input:focus {
+      border-color: #800020;
+    }
+
+    form button {
+      background-color: #800020;
+      color: white;
+      border: none;
+      padding: 10px;
+      border-radius: 15px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: 0.3s;
+      font-family: "Poppins", sans-serif;
+    }
+
+    form button:hover {
+      background-color: #c20f10;
+      transform: scale(1.05);
+    }
+  </style>
 </head>
 <body>
-
   <!-- Tela de lista de contatos -->
   <div id="tela-lista" class="tela ativa">
     <h2>Contatos de Emergência</h2>
@@ -22,19 +202,95 @@
 
   <!-- Tela de novo contato -->
   <div id="tela-novo" class="tela">
+    <button class="voltar" onclick="voltar()">←</button>
     <h2>Novo Contato</h2>
     <div class="icone">
       <div class="avatar"></div>
     </div>
     <form id="formContato">
-      <input type="text" id="nome" placeholder="Nome" required>
-      <input type="text" id="sobrenome" placeholder="Sobrenome">
-      <input type="tel" id="telefone" placeholder="Telefone">
-      <input type="tel" id="celular" placeholder="Celular">
+      <input type="text" id="nome" placeholder="Nome" required />
+      <input type="text" id="sobrenome" placeholder="Sobrenome" />
+      <input type="tel" id="telefone" placeholder="Telefone" />
+      <input type="tel" id="celular" placeholder="Celular" />
       <button type="submit">Salvar</button>
     </form>
   </div>
 
-  <script src="contato.js"></script>
+  <script>
+    const telaLista = document.getElementById("tela-lista");
+    const telaNovo = document.getElementById("tela-novo");
+    const btnAdicionar = document.getElementById("btnAdicionar");
+    const formContato = document.getElementById("formContato");
+    const listaContatos = document.getElementById("listaContatos");
+
+    let contatos = [];
+
+    // Botão "Adicionar Contato"
+    btnAdicionar.addEventListener("click", () => {
+      mudarTela(telaLista, telaNovo);
+    });
+
+    // Função "Voltar"
+    function voltar() {
+      mudarTela(telaNovo, telaLista);
+    }
+
+    // Salva contato
+    formContato.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      const nome = document.getElementById("nome").value.trim();
+      const sobrenome = document.getElementById("sobrenome").value.trim();
+      const telefone = document.getElementById("telefone").value.trim();
+      const celular = document.getElementById("celular").value.trim();
+
+      if (!nome || (!telefone && !celular)) {
+        alert("Por favor, preencha pelo menos o nome e um telefone.");
+        return;
+      }
+
+      contatos.push({ nome, sobrenome, telefone, celular });
+      atualizarLista();
+      formContato.reset();
+      mudarTela(telaNovo, telaLista);
+    });
+
+    // Atualiza lista
+    function atualizarLista() {
+      listaContatos.innerHTML = "";
+      if (contatos.length === 0) {
+        listaContatos.innerHTML = "<p>Nenhum contato adicionado.</p>";
+        return;
+      }
+
+      contatos.forEach((c, i) => {
+        const div = document.createElement("div");
+        div.classList.add("contato");
+        div.innerHTML = `
+          <span><strong>${c.nome} ${c.sobrenome}</strong></span>
+          <span>${c.telefone || c.celular || "Sem número"}</span>
+          <button onclick="removerContato(${i})">Remover ></button>
+        `;
+        listaContatos.appendChild(div);
+      });
+    }
+
+    // Remove contato
+    function removerContato(i) {
+      contatos.splice(i, 1);
+      atualizarLista();
+    }
+
+    // Troca de telas com fade
+    function mudarTela(saindo, entrando) {
+      saindo.classList.remove("ativa");
+      setTimeout(() => {
+        entrando.classList.add("ativa");
+      }, 200);
+    }
+
+    // Inicializa lista
+    atualizarLista();
+  </script>
 </body>
 </html>
