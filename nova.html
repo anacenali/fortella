@@ -5,9 +5,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Nova - Fortella</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Judson:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Judson:wght@400;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
 
   <style>
     * {
@@ -52,6 +51,12 @@
     header i {
       font-size: 1.3rem;
       color: #0f241e;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    header i:hover {
+      color: #ffffff;
     }
 
     /* Imagem diária */
@@ -94,6 +99,13 @@
 
     .secao i {
       color: #fff;
+      cursor: pointer;
+      font-size: 1.1rem;
+      transition: 0.3s;
+    }
+
+    .secao i:hover {
+      color: #c9d9d3;
     }
 
     /* Galeria */
@@ -123,10 +135,11 @@
   <div class="celular">
     <!-- topo -->
     <header>
-      <i class="fa-solid fa-house"></i>
+      <i class="fa-solid fa-arrow-left" onclick="voltarTelaInicial()"></i>
       <span>Novos</span>
-      <i class="fa-solid fa-user"></i>
+      <i class="fa-solid fa-user" onclick="dadosPessoais()"></i>
     </header>
+
 
     <!-- imagem diária -->
     <div class="imagem-diaria">
@@ -136,9 +149,8 @@
 
         <!-- botão menu -->
     <div class="secao">
-      <h4>Tela de início</h4>
-      <button onclick="abrirInicio()"></button>
-      <i class="fa-solid fa-arrow-left"></i>
+      <h4>Novos</h4>
+      <i class="fa-solid fa-plus"></i>
     </div>
 
     <!-- galeria -->
@@ -153,8 +165,12 @@
   </div>
 
   <script>
-    function abrirInicio() {
+    function voltarTelaInicial() {
       window.location.href = "inicio.html";
+    }
+
+    function dadosPessoais() {
+      window.location.href = "dados.html";
     }
 
     function abrirPerfil() {

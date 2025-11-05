@@ -1,9 +1,10 @@
 <!DOCTYPE html>
+
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ajustes de Notificações</title>
+<title>Notificações</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <style>
   * {
@@ -13,146 +14,165 @@
     font-family: "Poppins", sans-serif;
   }
 
-  body {
-    background-color: #d9d9d9;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    min-height: 100vh;
-    padding: 10px;
-  }
+body {
+background: linear-gradient(135deg, #16222A, #3A6073);
+display: flex;
+justify-content: center;
+align-items: center;
+min-height: 100vh;
+}
 
-  .celular {
-    background-color: #0f1715;
-    width: 280px;
-    min-height: 540px;
-    border-radius: 15px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.4);
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-  }
+.celular {
+background-color: #fff;
+width: 320px;
+min-height: 550px;
+border-radius: 20px;
+box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+display: flex;
+flex-direction: column;
+overflow: hidden;
+animation: fadeIn 0.8s ease;
+}
 
-  header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background-color: #0f1715;
-    color: #fff;
-    padding: 12px 15px;
-    font-size: 1rem;
-    border-bottom: 1px solid #2b2b2b;
-  }
+@keyframes fadeIn {
+from {opacity: 0; transform: translateY(20px);}
+to {opacity: 1; transform: translateY(0);}
+}
 
-  header i {
-    font-size: 1.2rem;
-    cursor: pointer;
-  }
+header {
+display: flex;
+align-items: center;
+justify-content: space-between;
+background: linear-gradient(90deg, #0f1715, #b22b2b);
+color: #fff;
+padding: 14px 16px;
+font-size: 1rem;
+}
 
-  .conteudo {
-    flex: 1;
-    background-color: #f8f8f8;
-    margin: 25px 15px;
-    padding: 15px;
-    border-radius: 10px;
-  }
+header a {
+color: #fff;
+text-decoration: none;
+}
 
-  .conteudo h2 {
-    color: #141414;
-    text-align: center;
-    font-size: 1rem;
-    margin-bottom: 15px;
-  }
+header i {
+font-size: 1.3rem;
+cursor: pointer;
+}
 
-  .item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 0;
-    border-bottom: 1px solid #ccc;
-  }
+.conteudo {
+flex: 1;
+background-color: #f9f9f9;
+margin: 20px;
+padding: 15px;
+border-radius: 12px;
+box-shadow: inset 0 0 5px rgba(0,0,0,0.05);
+}
 
-  .item:last-child {
-    border-bottom: none;
-  }
+.conteudo h2 {
+color: #222;
+text-align: center;
+font-size: 1.1rem;
+margin-bottom: 15px;
+}
 
-  .label {
-    font-size: 0.9rem;
-    color: #111;
-  }
+.item {
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 12px 0;
+border-bottom: 1px solid #ccc;
+}
 
-  /* Switch customizado */
-  .switch {
-    position: relative;
-    display: inline-block;
-    width: 40px;
-    height: 22px;
-  }
+.item:last-child {
+border-bottom: none;
+}
 
-  .switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-  }
+.label {
+font-size: 0.9rem;
+color: #111;
+}
 
-  .slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #bbb;
-    border-radius: 22px;
-    transition: .4s;
-  }
+/* Switch customizado */
+.switch {
+position: relative;
+display: inline-block;
+width: 42px;
+height: 24px;
+}
 
-  .slider:before {
-    position: absolute;
-    content: "";
-    height: 16px;
-    width: 16px;
-    left: 3px;
-    bottom: 3px;
-    background-color: white;
-    border-radius: 50%;
-    transition: .4s;
-  }
+.switch input {
+opacity: 0;
+width: 0;
+height: 0;
+}
 
-  input:checked + .slider {
-    background-color: #b22b2b;
-  }
+.slider {
+position: absolute;
+cursor: pointer;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+background-color: #bbb;
+border-radius: 24px;
+transition: .4s;
+}
 
-  input:checked + .slider:before {
-    transform: translateX(18px);
-  }
+.slider:before {
+position: absolute;
+content: "";
+height: 18px;
+width: 18px;
+left: 3px;
+bottom: 3px;
+background-color: white;
+border-radius: 50%;
+transition: .4s;
+}
 
-  button {
-    width: 100%;
-    margin-top: 20px;
-    background-color: #b22b2b;
-    color: #fff;
-    border: none;
-    padding: 8px;
-    border-radius: 8px;
-    font-size: 0.9rem;
-    cursor: pointer;
-    transition: background 0.2s ease;
-  }
+input:checked + .slider {
+background-color: #b22b2b;
+}
 
-  button:hover {
-    background-color: #941f1f;
-  }
+input:checked + .slider:before {
+transform: translateX(18px);
+}
 
-  footer {
-    background-color: #0f1715;
-    color: #fff;
-    text-align: center;
-    padding: 8px;
-    font-size: 0.8rem;
-    border-top: 1px solid #2b2b2b;
-  }
-</style>
+button {
+width: 100%;
+margin-top: 25px;
+background: linear-gradient(90deg, #b22b2b, #8b1e1e);
+color: #fff;
+border: none;
+padding: 10px;
+border-radius: 10px;
+font-size: 0.95rem;
+cursor: pointer;
+transition: transform 0.2s, background 0.3s;
+}
+
+button:hover {
+transform: scale(1.03);
+background: linear-gradient(90deg, #941f1f, #b22b2b);
+}
+
+.mensagem {
+text-align: center;
+color: green;
+font-weight: 500;
+font-size: 0.9rem;
+margin-top: 10px;
+display: none;
+}
+
+footer {
+background-color: #0f1715;
+color: #fff;
+text-align: center;
+padding: 10px;
+font-size: 0.8rem;
+} </style>
+
 </head>
 
 <body>
@@ -163,45 +183,50 @@
       <i class="fa-solid fa-bell"></i>
     </header>
 
-    <div class="conteudo">
-      <h2>Gerencie suas notificações</h2>
+<div class="conteudo">
+  <h2>Gerencie suas notificações</h2>
 
-      <div class="item">
-        <span class="label">Notificações por E-mail</span>
-        <label class="switch">
-          <input type="checkbox" id="emailNotif" checked>
-          <span class="slider"></span>
-        </label>
-      </div>
+  <div class="item">
+    <span class="label">Notificações por E-mail</span>
+    <label class="switch">
+      <input type="checkbox" id="emailNotif" checked>
+      <span class="slider"></span>
+    </label>
+  </div>
 
-      <div class="item">
-        <span class="label">Notificações por App</span>
-        <label class="switch">
-          <input type="checkbox" id="appNotif">
-          <span class="slider"></span>
-        </label>
-      </div>
+  <div class="item">
+    <span class="label">Notificações pelo App</span>
+    <label class="switch">
+      <input type="checkbox" id="appNotif">
+      <span class="slider"></span>
+    </label>
+  </div>
 
-      <div class="item">
-        <span class="label">Alertas de Segurança</span>
-        <label class="switch">
-          <input type="checkbox" id="securityNotif" checked>
-          <span class="slider"></span>
-        </label>
-      </div>
+  <div class="item">
+    <span class="label">Alertas de Segurança</span>
+    <label class="switch">
+      <input type="checkbox" id="securityNotif" checked>
+      <span class="slider"></span>
+    </label>
+  </div>
 
-      <button onclick="salvar()">Salvar Alterações</button>
-    </div>
+  <button onclick="salvar()">Salvar Alterações</button>
+  <div class="mensagem" id="mensagemSucesso">Configurações salvas com sucesso!</div>
+</div>
 
-    <footer>
-      <p>© 2025 Sistema de Configurações</p>
-    </footer>
+<footer>
+  <p>© 2025 Sistema de Configurações</p>
+</footer>
+
   </div>
 
   <script>
     function salvar() {
-      alert("Alterações de notificações salvas com sucesso!");
+      const msg = document.getElementById("mensagemSucesso");
+      msg.style.display = "block";
+      setTimeout(() => msg.style.display = "none", 3000);
     }
   </script>
+
 </body>
 </html>

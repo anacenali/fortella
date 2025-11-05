@@ -2,17 +2,15 @@
 <html lang="pt-BR">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Marinho - Fortella</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Marinho</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Judson:wght@400;700&family=Poppins:wght@400;500;600&display=swap"
+    rel="stylesheet">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Judson:wght@400;700&family=Poppins:wght@400;500;600&display=swap"
-        rel="stylesheet">
 
-    <style>
+  <style>
     * {
       box-sizing: border-box;
       margin: 0;
@@ -118,59 +116,62 @@
     .galeria img:hover {
       transform: scale(1.05);
     }
-    </style>
+  </style>
 </head>
 
 <body>
 
-    <div class="celular">
-        <!-- topo -->
+  <div class="celular">
+    <!-- topo -->
     <header>
-      <i class="fa-solid fa-house"></i>
+      <i class="fa-solid fa-arrow-left" onclick="voltarTelaInicial()"></i>
       <span>Marinho</span>
-      <i class="fa-solid fa-user"></i>
+      <i class="fa-solid fa-user" onclick="dadosPessoais()"></i>
     </header>
 
-        <!-- imagem diária -->
+    <!-- imagem diária -->
     <div class="imagem-diaria">
       <p>Imagem diária</p>
       <img src="img/imagem_diaria.png" alt="Imagem diária">
     </div>
 
-        <!-- botão menu -->
+    <!-- botão menu -->
     <div class="secao">
       <h4>Marinho</h4>
-      <button onclick="abrirInicio()"></button>
-      <i class="fa-solid fa-arrow-left"></i>
+      <i class="fa-solid fa-anchor"></i>
     </div>
 
-        <!-- galeria -->
-        <div class="galeria">
-            <img src="tartaruga.png" alt="Desenho 1" onclick="abrirDesenho('tartaruga.png')">
-            <img src="sereia.png" alt="Desenho 2" onclick="abrirDesenho('sereia.png')">
-            <img src="sapo.png" alt="Desenho 3" onclick="abrirDesenho('sapo.png')">
-            <img src="lula.png" alt="Desenho 4" onclick="abrirDesenho('lula.png')">
-            <img src="cavaloM.png" alt="Desenho 5" onclick="abrirDesenho('cavaloM.png')">
-            <img src="polvo.png" alt="Desenho 6" onclick="abrirDesenho('polvo.png')">
-        </div>
+    <!-- galeria -->
+    <div class="galeria">
+      <img src="tartaruga.png" alt="Desenho 1" onclick="abrirDesenho('tartaruga.png')">
+      <img src="sereia.png" alt="Desenho 2" onclick="abrirDesenho('sereia.png')">
+      <img src="sapo.png" alt="Desenho 3" onclick="abrirDesenho('sapo.png')">
+      <img src="lula.png" alt="Desenho 4" onclick="abrirDesenho('lula.png')">
+      <img src="cavaloM.png" alt="Desenho 5" onclick="abrirDesenho('cavaloM.png')">
+      <img src="polvo.png" alt="Desenho 6" onclick="abrirDesenho('polvo.png')">
     </div>
-    <script>
-        function abrirInicio() {
-            window.location.href = "inicio.html";
-        }
+  </div>
+  <script>
+    function voltarTelaInicial() {
+      window.location.href = "inicio.html";
+    }
 
-        function abrirPerfil() {
-            window.location.href = "perfil.html";
-        }
+    function dadosPessoais() {
+      window.location.href = "configuracoes.html";
+    }
 
-        function abrirRotas() {
-            window.location.href = "rotas1.html";
-        }
+    function abrirPerfil() {
+      window.location.href = "perfil.html";
+    }
 
-        function abrirDesenho(img) {
-            window.location.href = "https://kleki.com/";
-        }
-    </script>
+    function abrirRotas() {
+      window.location.href = "rotas1.html";
+    }
+
+    function abrirDesenho(img) {
+      window.location.href = "https://kleki.com/";
+    }
+  </script>
 
 </body>
 

@@ -136,7 +136,7 @@
     <header>
       <i class="fa-solid fa-arrow-left" onclick="voltarTelaInicial()"></i>
       <span>Flores</span>
-      <i class="fa-solid fa-user"></i>
+      <i class="fa-solid fa-user" onclick="dadosPessoais()"></i>
     </header>
 
     <!-- Imagem diária -->
@@ -165,7 +165,12 @@
 
   <script>
     function voltarTelaInicial() {
-      window.location.href = "tela_inicio.html";
+      window.location.href = "inicio.html";
+    }
+
+
+    function dadosPessoais() {
+      window.location.href = "dados.html";
     }
 
     function abrirDesenho(img) {
