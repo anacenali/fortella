@@ -5,27 +5,41 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <title>Rotas Seguras - Trajeto</title>
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
 
   <style>
-    /* ===== Layout geral ===== */
+    /* ===== Corpo simula tela de celular ===== */
     body {
-      font-family: Arial, sans-serif;
       background-color: #0F171C;
-      color: white;
       margin: 0;
-      padding: 0;
-      display: flex;
-      flex-direction: column;
       height: 100vh;
-      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
-    /* ===== Topo: informações ===== */
+    /* ===== Moldura tipo app ===== */
+    .app-container {
+      width: 390px;           /* largura típica de celular */
+      height: 800px;          /* altura típica de celular */
+      background-color: #0F171C;
+      border-radius: 30px;
+      overflow: hidden;
+      box-shadow: 0 0 20px rgba(0,0,0,0.5);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ===== Topo ===== */
     .info-container {
       background-color: #122026;
-      padding: 10px;
+      padding: 10px 15px;
       color: white;
       text-align: left;
+      flex-shrink: 0;
     }
 
     .info-container small {
@@ -53,12 +67,12 @@
     /* ===== Botões flutuantes ===== */
     .action-bar {
       position: absolute;
-      bottom: 110px;
+      bottom: 120px;
       left: 0;
       right: 0;
       display: flex;
       justify-content: space-between;
-      padding: 0 15px;
+      padding: 0 20px;
       z-index: 999;
     }
 
@@ -123,9 +137,10 @@
       text-align: center;
       font-weight: bold;
       font-size: 15px;
+      color: white;
     }
 
-    /* ===== Ícone de localização ===== */
+    /* ===== Ícone localização ===== */
     .leaflet-marker-icon.user-location-marker {
       background-color: blue;
       border-radius: 50%;
@@ -135,13 +150,15 @@
 
     /* ===== Responsividade extra ===== */
     @media (max-width: 480px) {
+      .app-container {
+        width: 100vw;
+        height: 100vh;
+        border-radius: 0;
+      }
       .nav-btn {
         width: 50px;
         height: 50px;
         font-size: 18px;
-      }
-      .nav-info {
-        font-size: 14px;
       }
       .floating-btn {
         font-size: 12px;
@@ -152,24 +169,29 @@
 </head>
 
 <body>
-  <div class="info-container">
-    <small>Seu local:</small>
-    <div id="localAtual" class="info-field">Localização atual</div>
-    <small>Destino:</small>
-    <div id="destinoFinal" class="info-field">Casa</div>
-  </div>
 
-  <div id="map"></div>
 
-  <div class="action-bar">
-    <button class="floating-btn recentralizar" onclick="recentralizarMapa()">⌖ Recentralizar</button>
-    <button class="floating-btn reportar" onclick="alert('Reportar ainda não implementado.')">⚠️ Reportar</button>
-  </div>
+  <div class="app-container">
+    
+    <div class="info-container">
+      <small>Seu local:</small>
+      <div id="localAtual" class="info-field">Localização atual</div>
+      <small>Destino:</small>
+      <div id="destinoFinal" class="info-field">Casa</div>
+    </div>
 
-  <div class="nav-bottom">
-    <button class="nav-btn finalizar-btn" onclick="finalizarRota()">✕</button>
-    <div id="navInfo" class="nav-info">-- min<br>-- m</div>
-    <button class="nav-btn compartilhar-chegada-btn" onclick="compartilharChegada()">⇶</button>
+    <div id="map"></div>
+
+    <div class="action-bar">
+      <button class="floating-btn recentralizar" onclick="recentralizarMapa()">⌖ Recentralizar</button>
+      <button class="floating-btn reportar" onclick="alert('Reportar ainda não implementado.')">⚠️ Reportar</button>
+    </div>
+
+    <div class="nav-bottom">
+      <button class="nav-btn finalizar-btn" onclick="finalizarRota()">✕</button>
+      <div id="navInfo" class="nav-info">-- min<br>-- m</div>
+      <button class="nav-btn compartilhar-chegada-btn" onclick="compartilharChegada()">⇶</button>
+    </div>
   </div>
 
   <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
