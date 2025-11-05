@@ -135,7 +135,7 @@
     <header>
       <i class="fa-solid fa-arrow-left" onclick="voltarInicio()"></i>
       <span>Coração</span>
-      <i class="fa-solid fa-user"></i>
+      <i class="fa-solid fa-user" onclick="dadosPessoais()"></i>
     </header>
 
     <div class="imagem-diaria">
@@ -161,7 +161,11 @@
   <script>
     // Voltar para a tela inicial
     function voltarInicio() {
-      window.location.href = "tela_inicio.html";
+      window.location.href = "inicio.html";
+    }
+
+    function dadosPessoais() {
+      window.location.href = "dados.html";
     }
 
     // Quando clicar em uma imagem, guarda o link e vai pra tela de detalhe

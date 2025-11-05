@@ -136,7 +136,7 @@
     <header>
       <i class="fa-solid fa-arrow-left voltar" onclick="voltarInicio()"></i>
       <span>Animais</span>
-      <i class="fa-solid fa-user"></i>
+      <i class="fa-solid fa-user" onclick="dadosPessoais()"></i>
     </header>
 
     <div class="imagem-diaria">
@@ -162,7 +162,11 @@
   <script>
     // Redireciona para tela_inicio.html ao clicar na seta
     function voltarInicio() {
-      window.location.href = "tela_inicio.html";
+      window.location.href = "inicio.html";
+    }
+
+    function dadosPessoais() {
+      window.location.href = "dados.html";
     }
 
     // Ao clicar em uma imagem, salva o link e redireciona para a tela de detalhe
