@@ -2,142 +2,195 @@
 <html lang="pt-BR">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lugares Seguros</title>
-    <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-            margin: 0;
-            background: #0F171C;
-            color: #fff;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lugares Seguros</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Judson:wght@400;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
 
-        .container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            height: 100vh;
-        }
+  <style>
+    /* ===== ESTILO GERAL ===== */
+    body {
+      font-family: 'judson', sans-serif;
+      margin: 0;
+      background: #0F171C;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
 
-        header {
-            background: #0F171C;
-            width: 100%;
-            text-align: center;
-            padding: 1rem;
-            color: #fff;
-            font-size: 1.2rem;
-            position: relative;
-        }
+    header {
+      background-color:  #527D6F;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 15px;
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
 
-        .user-icon {
-            position: absolute;
-            right: 15px;
-            top: 10px;
-            font-size: 1.4rem;
-        }
+    header i {
+      font-size: 1.3rem;
+      color: #0f241e;
+      cursor: pointer;
+      transition: 0.3s;
+    }
 
-        .subtitle {
-            background: #527D6F;
-            padding: 0.5rem 1rem;
-            border-radius: 8px;
-            margin: 10px;
-        }
+    header i:hover {
+      color: #ffffff;
+    }
 
-        .list {
-            flex: 1;
-            overflow-y: auto;
-            width: 90%;
-            margin-bottom: 1rem;
-        }
 
-        .place {
-            background: #EAEAEA;
-            color: #0F171C;
-            padding: 1rem;
-            margin-bottom: 10px;
-            border-radius: 12px;
-            cursor: pointer;
-            transition: transform 0.1s;
-        }
+    .subtitle {
+      background: #527D6F;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      margin: 10px auto;
+      font-size: 0.9rem;
+      text-align: center;
+      width: 90%;
+    }
 
-        .place:hover {
-            transform: scale(1.02);
-        }
+    .list {
+      flex: 1;
+      overflow-y: auto;
+      width: 90%;
+      margin: 0 auto;
+      padding-bottom: 0.5rem;
+    }
 
-        .place h3 {
-            color: #780C28;
-            margin-bottom: 5px;
-        }
+    .place {
+      background: #EAEAEA;
+      color: #0F171C;
+      padding: 1rem;
+      margin-bottom: 10px;
+      border-radius: 14px;
+      cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
+    }
 
-        .btn-principal {
-            background: #780C28;
-            color: white;
-            border: none;
-            padding: 1rem;
-            width: 90%;
-            font-size: 1rem;
-            border-radius: 12px;
-            margin-bottom: 1rem;
-            cursor: pointer;
-        }
-    </style>
+    .place:hover {
+      transform: scale(1.02);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.35);
+    }
+
+    .place h3 {
+      color: #780C28;
+      margin-bottom: 5px;
+      font-size: 1rem;
+    }
+
+    .place p {
+      margin: 2px 0;
+      font-size: 0.85rem;
+    }
+
+    .btn-principal {
+      background: #780C28;
+      color: white;
+      border: none;
+      padding: 1rem;
+      width: 90%;
+      font-size: 1rem;
+      border-radius: 12px;
+      margin: 10px auto 15px;
+      cursor: pointer;
+      transition: background 0.2s;
+      display: block;
+    }
+
+    .btn-principal:hover {
+      background: #8f1b33;
+    }
+
+
+    .celular {
+      background-color: #c9d9d3;
+      width: 280px;
+      min-height: 550px;
+      border-radius: 15px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    
+ 
+  </style>
 </head>
 
 <body>
-    <div class="container">
-        <header>
-            <h2>Lugares Seguros</h2>
-            <div class="user-icon">👤</div>
-        </header>
+ 
 
-        <p class="subtitle">Lugares próximos à sua localização</p>
-
-        <div class="list">
-            <div class="place" data-lat="-23.25821" data-lon="-51.14583">
-                <h3>Lugar 1</h3>
-                <p><strong>Pronto atendimento Maria Cecília</strong></p>
-                <p>Av. Saul Elkind, 892 - Vivi Xavier, Londrina – PR</p>
-            </div>
-
-            <div class="place" data-lat="-23.25798" data-lon="-51.15459">
-                <h3>Lugar 2</h3>
-                <p><strong>Polícia Militar</strong></p>
-                <p>Av. Saul Elkind, 1725 - Jacutinga, Londrina - PR</p>
-            </div>
-
-            <div class="place" data-lat="-23.25759" data-lon="-51.15363">
-                <h3>Lugar 3</h3>
-                <p><strong>Farmácias Nissei</strong></p>
-                <p>Av. Saul Elkind, 1630 - Conjunto Habitacional, Londrina - PR</p>
-            </div>
-        </div>
-
-        <button id="localMaisSeguro" class="btn-principal">Local mais seguro ➜</button>
     </div>
 
-    <script>
-        // Ao clicar em um lugar, salvar destino e abrir a tela de rota
-        document.querySelectorAll('.place').forEach(place => {
-            place.addEventListener('click', () => {
-                const lat = place.dataset.lat;
-                const lon = place.dataset.lon;
-                const name = place.querySelector('strong').textContent;
-                localStorage.setItem('destino', JSON.stringify({ lat, lon, name }));
-                window.location.href = "rotasegura.html";
-            });
-        });
+  <div class="celular">
 
-        // Botão "Local mais seguro" (pega o primeiro da lista)
-        document.getElementById('localMaisSeguro').addEventListener('click', () => {
-            const primeiroLugar = document.querySelector('.place');
-            const lat = primeiroLugar.dataset.lat;
-            const lon = primeiroLugar.dataset.lon;
-            const name = primeiroLugar.querySelector('strong').textContent;
-            localStorage.setItem('destino', JSON.stringify({ lat, lon, name }));
-            window.location.href = "rotasegura.html";
-        });
-    </script>
+    <header>
+      <i class="fa-solid fa-arrow-left" onclick="voltarInicio()"></i>
+      <span>Lugares seguros</span>
+      <i class="fa-solid fa-user" onclick="dadosPessoais()"></i>
+    </header>
+
+    <p class="subtitle">Lugares próximos à sua localização</p>
+
+    <div class="list">
+      <div class="place" data-lat="-23.25821" data-lon="-51.14583">
+        <h3>Lugar 1</h3>
+        <p><strong>Pronto atendimento Maria Cecília</strong></p>
+        <p>Av. Saul Elkind, 892 - Vivi Xavier, Londrina – PR</p>
+      </div>
+
+      <div class="place" data-lat="-23.25798" data-lon="-51.15459">
+        <h3>Lugar 2</h3>
+        <p><strong>Polícia Militar</strong></p>
+        <p>Av. Saul Elkind, 1725 - Jacutinga, Londrina - PR</p>
+      </div>
+
+      <div class="place" data-lat="-23.25759" data-lon="-51.15363">
+        <h3>Lugar 3</h3>
+        <p><strong>Farmácias Nissei</strong></p>
+        <p>Av. Saul Elkind, 1630 - Conjunto Habitacional, Londrina - PR</p>
+      </div>
+    </div>
+
+    <button id="localMaisSeguro" class="btn-principal">Local mais seguro ➜</button>
+  </div>
+
+  <script>
+
+    function voltarInicio() {
+      window.location.href = "animais.html";
+    }
+    function dadosPessoais() {
+      window.location.href = "configuracoes.html";
+    }
+
+    // Ao clicar em um lugar → salvar destino e abrir tela de rota
+    document.querySelectorAll('.place').forEach(place => {
+      place.addEventListener('click', () => {
+        const lat = place.dataset.lat;
+        const lon = place.dataset.lon;
+        const name = place.querySelector('strong').textContent;
+        localStorage.setItem('destino', JSON.stringify({ lat, lon, name }));
+        window.location.href = "rotasegura.html";
+      });
+    });
+
+    // Botão "Local mais seguro"
+    document.getElementById('localMaisSeguro').addEventListener('click', () => {
+      const primeiroLugar = document.querySelector('.place');
+      const lat = primeiroLugar.dataset.lat;
+      const lon = primeiroLugar.dataset.lon;
+      const name = primeiroLugar.querySelector('strong').textContent;
+      localStorage.setItem('destino', JSON.stringify({ lat, lon, name }));
+      window.location.href = "rotasegura.html";
+    });
+  </script>
 </body>
 
 </html>

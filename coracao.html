@@ -1,125 +1,141 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Coração</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-<style>
-  * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: "Poppins", sans-serif;
-  }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coração</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Judson:wght@400;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
 
-  body {
-    background-color: #d9e4df;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    min-height: 100vh;
-    padding: 10px;
-  }
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: "Judson", sans-serif;
+    }
 
-  .celular {
-    background-color: #c9d9d3;
-    width: 280px;
-    min-height: 550px;
-    border-radius: 15px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.25);
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-  }
+    body {
+      background-color: #d9e4df;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+      padding: 10px;
+    }
 
-  /* Header */
-  header {
-    background-color: #78a89b;
-    color: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px 15px;
-    font-size: 1.1rem;
-    font-weight: 600;
-  }
+    .celular {
+      background-color: #c9d9d3;
+      width: 280px;
+      min-height: 550px;
+      border-radius: 15px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
 
-  header i {
-    font-size: 1.3rem;
-    color: #0f241e;
-  }
+    /* Header */
+    header {
+      background-color: #78a89b;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 15px;
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
 
-  /* Imagem diária */
-  .imagem-diaria {
-    background-color: #4e7f73;
-    border-radius: 8px;
-    margin: 10px;
-    height: 90px;
-    padding: 10px;
-    color: #f2f2f2;
-    position: relative;
-  }
+    header i {
+      font-size: 1.3rem;
+      color: #0f241e;
+      cursor: pointer;
+      transition: 0.3s;
+    }
 
-  .imagem-diaria p {
-    font-size: 0.85rem;
-  }
+    header i:hover {
+      color: #ffffff;
+    }
 
-  .imagem-diaria img {
-    width: 70px;
-    position: absolute;
-    top: 8px;
-    right: 10px;
-    transform: rotate(10deg);
-    border-radius: 6px;
-    box-shadow: 2px 4px 6px rgba(0,0,0,0.3);
-  }
+    /* Imagem diária */
+    .imagem-diaria {
+      background-color: #4e7f73;
+      border-radius: 8px;
+      margin: 10px;
+      height: 90px;
+      padding: 10px;
+      color: #f2f2f2;
+      position: relative;
+    }
 
-  /* Seção Coração */
-  .secao {
-    background-color: #4e7f73;
-    color: #fff;
-    font-weight: 500;
-    margin: 0 10px;
-    border-radius: 6px;
-    padding: 6px 10px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
+    .imagem-diaria p {
+      font-size: 0.85rem;
+    }
 
-  .secao i {
-    color: #fff;
-  }
+    .imagem-diaria img {
+      width: 70px;
+      position: absolute;
+      top: 8px;
+      right: 10px;
+      transform: rotate(10deg);
+      border-radius: 6px;
+      box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.3);
+    }
 
-  /* Galeria */
-  .galeria {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 8px;
-    padding: 10px;
-  }
+    /* Seção Coração */
+    .secao {
+      background-color: #4e7f73;
+      color: #fff;
+      font-weight: 500;
+      margin: 0 10px;
+      border-radius: 6px;
+      padding: 6px 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
 
-  .galeria img {
-    width: 100%;
-    border-radius: 8px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-    cursor: pointer;
-    transition: transform 0.2s ease;
-  }
+    .secao i {
+      color: #fff;
+      cursor: pointer;
+      font-size: 1.1rem;
+      transition: 0.3s;
+    }
 
-  .galeria img:hover {
-    transform: scale(1.05);
-  }
-</style>
+    .secao i:hover {
+      color: #c9d9d3;
+    }
+
+    /* Galeria */
+    .galeria {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      padding: 10px;
+    }
+
+    .galeria img {
+      width: 100%;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+
+    .galeria img:hover {
+      transform: scale(1.05);
+    }
+  </style>
 </head>
 
 <body>
+  
   <div class="celular">
     <header>
-      <i class="fa-solid fa-house"></i>
+      <i class="fa-solid fa-arrow-left" onclick="voltarInicio()"></i>
       <span>Coração</span>
-      <i class="fa-solid fa-user"></i>
+      <i class="fa-solid fa-user" onclick="dadosPessoais()"></i>
     </header>
 
     <div class="imagem-diaria">
@@ -128,9 +144,8 @@
     </div>
 
     <div class="secao">
-      <h4 onclick="abrirLocalseguro()">Coração</h4>
-      <button onclick="abrirInicio()"></button>
-      <i class="fa-solid fa-arrow-left"></i>
+      <h4>Coração</h4>
+      <i class="fa-solid fa-heart"></i>
     </div>
 
     <div class="galeria">
@@ -143,23 +158,24 @@
     </div>
   </div>
 
-<script>
-  // Quando clica em uma imagem, guarda o link e vai pra outra tela
-  const imagens = document.querySelectorAll('.galeria img');
-
-  imagens.forEach(img => {
-    img.addEventListener('click', () => {
-      localStorage.setItem('imagemSelecionada', img.src);
-      window.location.href = 'detalhe.html';
-    });
-  });
-
-
-    function abrirLocalseguro() {
-      window.location.href = "lugaresseguro.html";
+  <script>
+    // Voltar para a tela inicial
+    function voltarInicio() {
+      window.location.href = "inicio.html";
     }
 
+    function dadosPessoais() {
+      window.location.href = "dados.html";
+    }
 
-</script>
+    // Quando clicar em uma imagem, guarda o link e vai pra tela de detalhe
+    const imagens = document.querySelectorAll('.galeria img');
+    imagens.forEach(img => {
+      img.addEventListener('click', () => {
+        localStorage.setItem('imagemSelecionada', img.src);
+        window.location.href = 'detalhe.html';
+      });
+    });
+  </script>
 </body>
 </html>

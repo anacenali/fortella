@@ -46,7 +46,23 @@
       font-weight: 600;
     }
 
-    header i {
+    header .voltar {
+      color: #0f241e;
+      font-size: 1.3rem;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    header .voltar:hover {
+      transform: scale(1.1);
+    }
+
+    header span {
+      flex-grow: 1;
+      text-align: center;
+    }
+
+    header i.fa-user {
       font-size: 1.3rem;
       color: #0f241e;
     }
@@ -118,9 +134,9 @@
 <body>
   <div class="celular">
     <header>
-      <i class="fa-solid fa-house"></i>
+      <i class="fa-solid fa-arrow-left voltar" onclick="voltarInicio()"></i>
       <span>Animais</span>
-      <i class="fa-solid fa-user"></i>
+      <i class="fa-solid fa-user" onclick="dadosPessoais()"></i>
     </header>
 
     <div class="imagem-diaria">
@@ -129,16 +145,14 @@
     </div>
 
     <div class="secao">
-      <h4 onclick="abrirSOS()">Animais</h4>
-      <button onclick="abrirInicio()"></button>
-      <i class="fa-solid fa-arrow-left"></i>
+      <h4>Animais</h4>
+      <i class="fa-solid fa-paw"></i>
     </div>
-
 
     <div class="galeria">
       <img src="img/cavalo.png" alt="Cavalo">
       <img src="img/borboleta.png" alt="Borboleta">
-      <img src="img/passaros.png" alt="Passaros">
+      <img src="img/passaros.png" alt="Pássaros">
       <img src="img/raposa.png" alt="Raposa">
       <img src="img/leao.png" alt="Leão">
       <img src="img/gatos.png" alt="Gatos">
@@ -146,6 +160,15 @@
   </div>
 
   <script>
+    // Redireciona para tela_inicio.html ao clicar na seta
+    function voltarInicio() {
+      window.location.href = "inicio.html";
+    }
+
+    function dadosPessoais() {
+      window.location.href = "dados.html";
+    }
+
     // Ao clicar em uma imagem, salva o link e redireciona para a tela de detalhe
     const imagens = document.querySelectorAll('.galeria img');
     imagens.forEach(img => {
@@ -154,11 +177,6 @@
         window.location.href = 'detalhe.html';
       });
     });
-
-
-    function abrirSOS() {
-      window.location.href = "sos.html";
-    }
   </script>
 </body>
 

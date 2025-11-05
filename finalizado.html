@@ -29,11 +29,30 @@
       position: relative;
     }
 
+    /* ======== Seta de Voltar ======== */
+    .back-btn {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 24px;
+      cursor: pointer;
+      transition: transform 0.2s, color 0.2s;
+    }
+
+    .back-btn:hover {
+      transform: scale(1.1);
+      color: #A1CF82;
+    }
+
     h1 {
       font-size: 20px;
       margin-bottom: 20px;
       text-align: center;
       line-height: 1.4;
+      margin-top: 50px;
     }
 
     .illustration {
@@ -96,6 +115,8 @@
 </head>
 <body>
   <div class="phone">
+    <button class="back-btn" onclick="voltar()">←</button>
+
     <h1>VOCÊ CHEGOU AO SEU<br>DESTINO COM<br>SEGURANÇA!</h1>
 
     <div class="illustration">
@@ -124,6 +145,10 @@
       } else {
         alert("Recurso de compartilhamento não suportado neste navegador.");
       }
+    }
+
+    function voltar() {
+      window.location.href = "rotas1.html";
     }
   </script>
 </body>

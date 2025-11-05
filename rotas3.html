@@ -2,160 +2,222 @@
 <html lang="pt-BR">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rota Segura - Etapa 3</title>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #0F171C;
-            color: white;
-            text-align: center;
-            margin: 0;
-            padding: 0;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <title>Rota Segura - Etapa 3</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Judson', sans-serif;
+    }
 
-        h2 {
-            background-color: #122026;
-            margin: 0;
-            padding: 10px;
-        }
+    body {
+      background-color: #d9d9d9;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
 
-        #map {
-            height: 400px;
-            width: 90%;
-            margin: 15px auto;
-            border-radius: 12px;
-            overflow: hidden;
-        }
+    .celular {
+      background-color: #0F171C;
+      width: 320px;
+      min-height: 580px;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
 
-        .menu {
-            background-color: #f3f3f3;
-            border-radius: 20px;
-            width: 90%;
-            margin: 10px auto;
-            padding: 15px;
-            color: black;
-        }
+    header {
+      position: relative;
+      background-color: #122026;
+      width: 100%;
+      padding: 12px 0;
+      text-align: center;
+      color: white;
+      font-size: 1rem;
+      font-weight: bold;
+    }
 
-        button {
-            width: 90%;
-            margin: 5px auto;
-            display: block;
-            border: none;
-            border-radius: 10px;
-            padding: 10px;
-            color: white;
-            font-size: 15px;
-            cursor: pointer;
-        }
+    .back-button {
+      position: absolute;
+      left: 15px;
+      top: 13px;
+      font-size: 1.2rem;
+      color: white;
+      text-decoration: none;
+      transition: 0.3s;
+    }
 
-        .alterar {
-            background-color: #780C28;
-        }
+    .back-button:hover {
+      color: #A1CF82;
+    }
 
-        .iniciar {
-            background-color: #527D6F;
-        }
+    #map {
+      width: 90%;
+      height: 280px;
+      margin: 10px 0;
+      border-radius: 12px;
+      border: 2px solid #527D6F;
+      overflow: hidden;
+    }
 
-        .compartilhar {
-            background-color: #780C28;
-        }
-    </style>
+    .menu {
+      background-color: #EAEAEA;
+      border-radius: 20px;
+      width: 90%;
+      margin-bottom: 15px;
+      padding: 15px;
+      color: #0F171C;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .menu-icons {
+      font-size: 22px;
+      margin-bottom: 8px;
+    }
+
+    .btn {
+      width: 100%;
+      border: none;
+      border-radius: 10px;
+      padding: 10px;
+      color: white;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .alterar {
+      background-color: #780C28;
+    }
+
+    .iniciar {
+      background-color: #527D6F;
+    }
+
+    .compartilhar {
+      background-color: #780C28;
+    }
+
+    .btn:hover {
+      filter: brightness(1.1);
+    }
+
+    @media (max-width: 480px) {
+      header h2 {
+        font-size: 0.95rem;
+      }
+
+      #map {
+        height: 55vh;
+      }
+
+      .btn {
+        font-size: 0.85rem;
+        padding: 9px;
+      }
+    }
+  </style>
 </head>
 
 <body>
-
-    <h2>Rotas Seguras</h2>
+  <div class="celular">
+    <header>
+      <a href="rotas2.html" class="back-button">
+        <i class="fa-solid fa-arrow-left"></i>
+      </a>
+      Rotas Seguras
+    </header>
 
     <div id="map"></div>
 
     <div class="menu">
-          <div style="font-size: 22px;">🧭🚶‍♀️🚴‍♂️</div>
-          <button class="alterar" onclick="alterarRota()">Alterar Rota</button>
-          <button class="iniciar" onclick="iniciarTrajeto()">Iniciar trajeto seguro</button>
-          <button class="compartilhar" onclick="compartilharRota()">Compartilhar rota</button>
+      <div class="menu-icons">🧭 🚶‍♀️ 🚴‍♂️</div>
+      <button class="btn alterar" onclick="alterarRota()">Alterar rota</button>
+      <button class="btn iniciar" onclick="iniciarTrajeto()">Iniciar trajeto seguro</button>
+      <button class="btn compartilhar" onclick="compartilharRota()">Compartilhar rota</button>
     </div>
+  </div>
 
-    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
-    <script>
-        let map = L.map('map').setView([-23.3103, -51.1628], 14); // Padrão Londrina
+  <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
+  <script>
+    let map = L.map('map').setView([-23.3103, -51.1628], 14);
 
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            maxZoom: 19,
-        }).addTo(map);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+    }).addTo(map);
 
-        let routeLayer;
-        let routeCoordinates = null; // Para armazenar a geometria da rota
+    let routeLayer;
+    let routeCoordinates = null;
 
-        // Recupera dados da rota da tela anterior
-        const rotaSelecionada = JSON.parse(localStorage.getItem("rotaSelecionada"));
+    const rotaSelecionada = JSON.parse(localStorage.getItem("rotaSelecionada"));
 
-        if (rotaSelecionada) {
-            mostrarRota(rotaSelecionada);
-        } else {
-            alert("Nenhuma rota selecionada. Voltando à tela anterior.");
-            window.location.href = "rotas2.html";
-        }
+    if (rotaSelecionada) {
+      mostrarRota(rotaSelecionada);
+    } else {
+      alert("Nenhuma rota selecionada. Voltando à tela anterior.");
+      window.location.href = "rotas2.html";
+    }
 
-        // Exibe a rota no mapa usando OSRM
-        function mostrarRota(coords) {
-            if (routeLayer) map.removeLayer(routeLayer);
+    function mostrarRota(coords) {
+      if (routeLayer) map.removeLayer(routeLayer);
 
-            const [origem, destino] = coords;
-            const url = `https://router.project-osrm.org/route/v1/driving/${origem[1]},${origem[0]};${destino[1]},${destino[0]}?overview=full&geometries=geojson`;
+      const [origem, destino] = coords;
+      const url = `https://router.project-osrm.org/route/v1/driving/${origem[1]},${origem[0]};${destino[1]},${destino[0]}?overview=full&geometries=geojson`;
 
-            fetch(url)
-                .then(res => res.json())
-                .then(data => {
-                    const route = data.routes[0];
+      fetch(url)
+        .then(res => res.json())
+        .then(data => {
+          const route = data.routes[0];
+          routeCoordinates = route.geometry.coordinates;
 
-                    // CORREÇÃO PRINCIPAL: Salvar as coordenadas da rota (Lon, Lat)
-                    routeCoordinates = route.geometry.coordinates;
+          const line = L.geoJSON(route.geometry, {
+            style: { color: "#527D6F", weight: 5 }
+          }).addTo(map);
 
-                    const line = L.geoJSON(route.geometry, {
-                        style: { color: "#527D6F", weight: 5 }
-                    }).addTo(map);
+          L.marker(origem).addTo(map).bindPopup("Origem");
+          L.marker(destino).addTo(map).bindPopup("Destino");
 
-                    // Adiciona marcadores de origem e destino
-                    L.marker(origem).addTo(map).bindPopup("Origem");
-                    L.marker(destino).addTo(map).bindPopup("Destino");
+          routeLayer = line;
+          map.fitBounds(line.getBounds(), { padding: [50, 50] });
+        })
+        .catch(err => console.error("Erro ao carregar rota:", err));
+    }
 
-                    routeLayer = line;
-                    map.fitBounds(line.getBounds(), { padding: [50, 50] });
-                })
-                .catch(err => console.error("Erro ao carregar rota:", err));
-        }
+    function alterarRota() {
+      window.location.href = "rotas2.html";
+    }
 
-        // Botões:
-        function alterarRota() {
-            window.location.href = "rotas2.html";
-        }
+    function iniciarTrajeto() {
+      if (!routeCoordinates) return alert("Aguarde o carregamento da rota.");
+      localStorage.setItem("routePath", JSON.stringify(routeCoordinates));
+      alert("Iniciando trajeto seguro...");
+      window.location.href = "rotas4.html";
+    }
 
-        function iniciarTrajeto() {
-            if (!routeCoordinates) return alert("Aguarde o carregamento da rota.");
-
-            // Salva as coordenadas da rota (lista de [lon, lat]) para uso na tela de navegação
-            localStorage.setItem("routePath", JSON.stringify(routeCoordinates));
-
-            alert("Iniciando trajeto seguro...");
-            window.location.href = "rotas4.html"; // Próxima tela do trajeto
-        }
-
-        function compartilharRota() {
-            if (navigator.share) {
-                navigator.share({
-                    title: "Minha rota segura",
-                    text: "Confira minha rota segura!",
-                    url: window.location.href
-                });
-            } else {
-                alert("Compartilhamento não suportado neste dispositivo.");
-            }
-        }
-    </script>
-
+    function compartilharRota() {
+      if (navigator.share) {
+        navigator.share({
+          title: "Minha rota segura",
+          text: "Confira minha rota segura!",
+          url: window.location.href
+        });
+      } else {
+        alert("Compartilhamento não suportado neste dispositivo.");
+      }
+    }
+  </script>
 </body>
-
 </html>

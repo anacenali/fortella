@@ -4,98 +4,171 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rotas Seguras - Etapa 1</title>
+  <title>Rotas Seguras</title>
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #0F171C;
-      color: white;
-      text-align: center;
+    * {
+      box-sizing: border-box;
       margin: 0;
+      padding: 0;
+      font-family: 'judson', sans-serif;
     }
 
-    h2 {
+    body {
+      background-color: #d9d9d9;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    /* Moldura simulando celular */
+    .celular {
+      background-color: #0F171C;
+      width: 320px;
+      min-height: 580px;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      position: relative;
       background-color: #122026;
+      padding: 14px 0;
+      font-size: 1.1rem;
+      text-align: center;
+      color: #fff;
+    }
+
+    .back-button {
+      position: absolute;
+      left: 15px;
+      top: 13px;
+      font-size: 1.2rem;
+      color: #fff;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    .back-button:hover {
+      color: #A1CF82;
+    }
+
+    .conteudo {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       padding: 10px;
+      color: white;
+    }
+
+    .destino-group {
+      display: flex;
+      align-items: center;
+      width: 90%;
+      margin: 10px 0;
+      background-color: #EAEAEA;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    input {
+      flex-grow: 1;
+      border: none;
+      background-color: transparent;
+      color: #0F171C;
+      padding: 10px;
+      font-size: 0.9rem;
+      outline: none;
+    }
+
+    .btn-buscar {
+      background-color: transparent;
+      border: none;
+      color: #527D6F;
+      font-size: 1.1rem;
+      cursor: pointer;
+      padding: 8px 10px;
+      transition: 0.3s;
+    }
+
+    .btn-buscar:hover {
+      color: #34574C;
     }
 
     #map {
-      height: 400px;
       width: 90%;
-      margin: 15px auto;
+      height: 300px;
+      margin-top: 10px;
       border-radius: 12px;
+      border: 2px solid #527D6F;
     }
 
-    /* Flex container para campo de destino e botão de busca */
-    .destino-group {
-      display: flex;
-      width: 90%;
-      margin: 5px auto;
-      gap: 5px;
-      /* Espaço entre input e botão */
-    }
-
-    input,
-    button {
-      padding: 10px;
-      margin: 5px 0;
-      border-radius: 10px;
-      border: none;
-      font-size: 15px;
-    }
-
-    /* Estilo para o campo de texto */
-    input {
-      background-color: #EAEAEA;
-      flex-grow: 1;
-      margin: 0;
-    }
-
-    /* Estilo para o botão de buscar/mostrar rotas */
     button {
       background-color: #780C28;
       color: white;
-      cursor: pointer;
+      border: none;
+      padding: 10px;
       width: 90%;
-      display: block;
-      /* Garante que o botão de rotas ocupe a largura total */
-      margin: 5px auto;
+      font-size: 0.95rem;
+      border-radius: 10px;
+      margin: 15px 0;
+      cursor: pointer;
+      transition: 0.2s;
     }
 
-    /* Novo botão de busca */
-    .btn-buscar {
-      background-color: #527D6F;
-      /* Cor diferente para busca */
-      color: white;
-      padding: 10px 15px;
-      margin: 0;
-      width: auto;
-      flex-shrink: 0;
+    button:hover {
+      background-color: #911838;
+    }
+
+    footer {
+      background-color: #122026;
+      color: #ccc;
+      text-align: center;
+      font-size: 0.8rem;
+      padding: 8px;
     }
   </style>
 </head>
 
 <body>
+  <div class="celular">
+    <header>
+      <a href="marinho.html" class="back-button"><i class="fa-solid fa-arrow-left"></i></a>
+      Rotas Seguras
+    </header>
 
-  <h2>Rotas Seguras</h2>
-  <div class="destino-group">
-    <input type="text" id="destino" placeholder="Digite o destino ou clique no mapa...">
-    <button class="btn-buscar" onclick="buscarDestino()">🔍</button>
+    <div class="conteudo">
+      <div class="destino-group">
+        <input type="text" id="destino" placeholder="Digite o destino ou clique no mapa...">
+        <button class="btn-buscar" onclick="buscarDestino()">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+      </div>
+
+      <div id="map"></div>
+
+      <button onclick="mostrarRotas()">Mostrar rotas seguras</button>
+    </div>
+
+    <footer>© 2025 Rotas Seguras</footer>
   </div>
-  <div id="map"></div>
-  <button onclick="mostrarRotas()">Mostrar rotas seguras</button>
 
   <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
   <script>
     let map = L.map('map').setView([-23.3103, -51.1628], 14);
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19 }).addTo(map);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19
+    }).addTo(map);
 
     let localAtual = null;
-    let destinoSelecionado = null; // Marcador do Leaflet
-    let destinoCoords = null; // Coordenadas [lat, lon] do destino
-
-    // --- Funções de Marcação e Inicialização ---
+    let destinoSelecionado = null;
+    let destinoCoords = null;
 
     function definirDestino(latlng) {
       if (destinoSelecionado) map.removeLayer(destinoSelecionado);
@@ -105,42 +178,29 @@
       document.getElementById('destino').value = `${latlng.lat.toFixed(5)}, ${latlng.lng.toFixed(5)}`;
     }
 
-    // Obter localização atual do usuário
     navigator.geolocation.getCurrentPosition(pos => {
       localAtual = [pos.coords.latitude, pos.coords.longitude];
       L.marker(localAtual).addTo(map).bindPopup("Você está aqui").openPopup();
       map.setView(localAtual, 15);
-    }, (error) => {
-      console.error("Erro ao obter localização: ", error);
-      alert("Não foi possível obter a localização atual. Usando ponto padrão.");
+    }, error => {
+      console.error("Erro ao obter localização:", error);
+      alert("Não foi possível obter a localização atual.");
     });
 
-    // Escolher destino clicando no mapa
-    map.on('click', e => {
-      // Ao clicar, o campo de texto é preenchido com as coordenadas
-      definirDestino(e.latlng);
-    });
-
-
-    // --- Funcionalidade de Busca (Geocodificação) ---
+    map.on('click', e => definirDestino(e.latlng));
 
     function buscarDestino() {
       const endereco = document.getElementById('destino').value.trim();
-      if (!endereco) {
-        return alert("Digite um endereço ou coordenadas válidas.");
-      }
+      if (!endereco) return alert("Digite um endereço ou coordenadas válidas.");
 
-      // Tenta primeiro parsear como coordenadas (Lat, Lon)
       const partes = endereco.split(',').map(p => p.trim());
       if (partes.length === 2 && !isNaN(parseFloat(partes[0])) && !isNaN(parseFloat(partes[1]))) {
         const lat = parseFloat(partes[0]);
         const lon = parseFloat(partes[1]);
-        if (lat >= -90 && lat <= 90 && lon >= -180 && lon <= 180) {
+        if (lat >= -90 && lat <= 90 && lon >= -180 && lon <= 180)
           return definirDestino({ lat, lng: lon });
-        }
       }
 
-      // Se não for coordenada, usa a API Nominatim para buscar o endereço
       const url = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(endereco)}&format=json&limit=1`;
 
       fetch(url)
@@ -149,24 +209,18 @@
           if (data && data.length > 0) {
             const lat = parseFloat(data[0].lat);
             const lon = parseFloat(data[0].lon);
-            // Define o destino com o resultado da busca
             definirDestino({ lat, lng: lon });
-            // Atualiza o campo com o nome encontrado (opcional)
             document.getElementById('destino').value = data[0].display_name;
           } else {
-            alert("Endereço não encontrado. Tente digitar as coordenadas.");
+            alert("Endereço não encontrado.");
           }
         })
         .catch(err => {
           console.error("Erro na geocodificação:", err);
-          alert("Erro ao buscar o endereço. Tente novamente.");
+          alert("Erro ao buscar o endereço.");
         });
     }
 
-
-    // --- Navegação para Tela 2 ---
-
-    // Ir para tela 2 com dados salvos
     function mostrarRotas() {
       if (!localAtual) return alert("Aguardando localização atual...");
       if (!destinoCoords) return alert("Selecione um destino no mapa ou utilize o botão 'Buscar'!");
@@ -177,7 +231,6 @@
       window.location.href = "rotas2.html";
     }
   </script>
-
 </body>
 
 </html>

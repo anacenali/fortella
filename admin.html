@@ -4,12 +4,199 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Painel Admin — Fortella</title>
-  <link rel="stylesheet" href="admin.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: "Poppins", system-ui, sans-serif;
+      background: #e9ecef;
+      color: #222;
+    }
+
+    /* TOPO */
+    .topo {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 24px;
+      background: #f5f5f5;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    .topo-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .voltar-btn {
+      color: #1a73e8;
+      font-size: 18px;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      transition: color 0.2s;
+    }
+
+    .voltar-btn:hover {
+      color: #0c5cc2;
+    }
+
+    .brand {
+      color: #1a73e8;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .topo-right {
+      color: #333;
+    }
+
+    /* PAINEL */
+    .painel {
+      max-width: 1200px;
+      margin: 24px auto;
+      background: #0f161b;
+      padding: 22px;
+      border-radius: 10px;
+      box-shadow: 0 8px 30px rgba(2, 6, 23, 0.25);
+      color: #fff;
+    }
+
+    /* TABS */
+    .tabs {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 18px;
+    }
+
+    .tab {
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 8px 14px;
+      border-radius: 8px;
+      color: #dfe7e9;
+      cursor: pointer;
+    }
+
+    .tab.active {
+      background: #ffffff0f;
+      color: #f1efef;
+      box-shadow: inset 0 -2px 0 rgba(255, 255, 255, 0.03);
+    }
+
+    .tab-panel { display: none; }
+    .tab-panel[data-visible] { display: block; }
+
+    .panel-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-bottom: 14px;
+    }
+
+    .actions { display: flex; gap: 10px; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      border: none;
+      padding: 8px 12px;
+    }
+
+    .btn.primary { background: #0d6efd; color: #fff; }
+    .btn.light { background: #f8f9fa; color: #111; }
+    .btn.outline {
+      background: transparent;
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+
+    .controls {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 18px;
+      flex-wrap: wrap;
+    }
+
+    .search {
+      position: relative;
+      flex: 1;
+      min-width: 200px;
+    }
+
+    .search i {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: rgba(255,255,255,0.6);
+    }
+
+    .search input {
+      width: 100%;
+      padding: 10px 12px 10px 38px;
+      border-radius: 12px;
+      border: none;
+      background: rgba(255,255,255,0.06);
+      color: #fff;
+    }
+
+    select {
+      padding: 10px 12px;
+      border-radius: 10px;
+      border: none;
+      background: rgba(255,255,255,0.06);
+      color: #fff;
+    }
+
+    .tabela-wrap {
+      background: rgba(255,255,255,0.95);
+      border-radius: 12px;
+      padding: 12px;
+      color: #111;
+    }
+
+    .tabela {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .tabela th, .tabela td {
+      padding: 14px 12px;
+      border-bottom: 1px solid #e9e9e9;
+      text-align: left;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 13px;
+      color: #fff;
+    }
+
+    .ativo { background: #28a745; }
+    .inativo { background: #dc3545; }
+
+  </style>
 </head>
+
 <body>
   <header class="topo">
-    <div class="topo-left"><a class="brand" href="#">Administrador</a></div>
+    <div class="topo-left">
+      <a href="javascript:history.back()" class="voltar-btn" title="Voltar">
+        <i class="fa-solid fa-arrow-left"></i>
+      </a>
+      <a class="brand" href="#">Administrador</a>
+    </div>
     <div class="topo-right">Olá, Admin <i class="fa-solid fa-user-circle"></i></div>
   </header>
 
@@ -20,125 +207,39 @@
       <button class="tab" data-tab="usuarios">Usuários</button>
     </nav>
 
-    <!-- LOCAIS -->
     <section class="tab-panel" id="locais" data-visible>
       <div class="panel-header">
         <h1>Gerenciar Locais Seguros</h1>
         <div class="actions">
-          <button id="atualizarLocais" class="btn light"><i class="fa-solid fa-rotate"></i> Atualizar</button>
-          <button id="abrirModalLocal" class="btn primary"><i class="fa-solid fa-plus"></i> Cadastrar Local</button>
+          <button class="btn light"><i class="fa-solid fa-rotate"></i> Atualizar</button>
+          <button class="btn primary"><i class="fa-solid fa-plus"></i> Cadastrar Local</button>
         </div>
       </div>
 
       <div class="controls">
         <div class="search">
           <i class="fa-solid fa-magnifying-glass"></i>
-          <input id="searchLocais" placeholder="Pesquisar por nome ou endereço">
+          <input placeholder="Pesquisar por nome ou endereço">
         </div>
-        <select id="filtroCategoria">
-          <option value="">Categoria</option>
+        <select>
+          <option>Categoria</option>
           <option>Hospital</option>
           <option>Escola</option>
-          <option>Delegacia</option>
-          <option>Farmácia</option>
-          <option>Casa</option>
-          <option>Trabalho</option>
-        </select>
-        <select id="filtroStatus">
-          <option value="">Status</option>
-          <option>Ativo</option>
-          <option>Inativo</option>
         </select>
       </div>
 
       <div class="tabela-wrap">
-        <table id="tabelaLocais" class="tabela">
+        <table class="tabela">
           <thead>
-            <tr><th>Nome</th><th>Endereço</th><th>Categoria</th><th>Status</th><th>Ações</th></tr>
+            <tr><th>Nome</th><th>Endereço</th><th>Categoria</th><th>Status</th></tr>
           </thead>
-          <tbody></tbody>
-        </table>
-      </div>
-    </section>
-
-    <!-- DENÚNCIAS -->
-    <section class="tab-panel" id="denuncias">
-      <div class="panel-header">
-        <h1>Gerenciar Denúncias</h1>
-        <div class="actions">
-          <button id="atualizarDenuncias" class="btn light"><i class="fa-solid fa-rotate"></i> Atualizar</button>
-          <button id="abrirModalDenuncia" class="btn primary"><i class="fa-solid fa-plus"></i> Nova Denúncia</button>
-        </div>
-      </div>
-
-      <div class="controls">
-        <div class="search">
-          <i class="fa-solid fa-magnifying-glass"></i>
-          <input id="searchDenuncias" placeholder="Pesquisar por número ou palavra-chave">
-        </div>
-        <button id="exportarDenuncias" class="btn outline"><i class="fa-solid fa-file-export"></i> Exportar Relatório</button>
-      </div>
-
-      <div class="tabela-wrap">
-        <table id="tabelaDenuncias" class="tabela">
-          <thead>
-            <tr><th>#</th><th>Data/Hora</th><th>Tipo</th><th>Status</th><th>Ações</th></tr>
-          </thead>
-          <tbody></tbody>
-        </table>
-      </div>
-
-      <div class="bottom-actions">
-        <button id="btnEncaminharSelecionadas" class="btn dark">Encaminhar</button>
-        <button id="btnAlterarSelecionadas" class="btn light">Alterar</button>
-      </div>
-    </section>
-
-    <!-- USUÁRIOS -->
-    <section class="tab-panel" id="usuarios">
-      <div class="panel-header">
-        <h1>Gerenciar Usuários</h1>
-        <div class="actions">
-          <button id="abrirModalUsuario" class="btn primary"><i class="fa-solid fa-plus"></i> Novo Usuário</button>
-        </div>
-      </div>
-
-      <div class="controls">
-        <div class="search">
-          <i class="fa-solid fa-magnifying-glass"></i>
-          <input id="searchUsuarios" placeholder="Pesquisar por nome ou e-mail">
-        </div>
-        <select id="filtroPapel">
-          <option value="">Papel</option>
-          <option>Admin</option>
-          <option>Moderador</option>
-          <option>Usuário</option>
-        </select>
-      </div>
-
-      <div class="tabela-wrap">
-        <table id="tabelaUsuarios" class="tabela">
-          <thead>
-            <tr><th>Nome</th><th>E-mail</th><th>Papel</th><th>Status</th><th>Ações</th></tr>
-          </thead>
-          <tbody></tbody>
+          <tbody>
+            <tr><td>Hospital Central</td><td>Rua X, 124</td><td>Hospital</td><td><span class="badge ativo">Ativo</span></td></tr>
+            <tr><td>Escola Modelo</td><td>Rua Y, 320</td><td>Escola</td><td><span class="badge inativo">Inativo</span></td></tr>
+          </tbody>
         </table>
       </div>
     </section>
   </main>
-
-  <!-- MODAL GENERICO -->
-  <div id="modal" class="modal hidden" role="dialog" aria-hidden="true">
-    <div class="modal-card">
-      <header class="modal-header">
-        <h2 id="modalTitle">Título</h2>
-        <button id="modalClose" class="btn icon"><i class="fa-solid fa-xmark"></i></button>
-      </header>
-      <div id="modalBody" class="modal-body"></div>
-      <footer class="modal-footer" id="modalFooter"></footer>
-    </div>
-  </div>
-
-  <script src="admin.js"></script>
 </body>
 </html>

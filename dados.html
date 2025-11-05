@@ -1,116 +1,150 @@
 <!DOCTYPE html>
+
 <html lang="pt-BR">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dados Pessoais</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-<style>
-  * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: "Poppins", sans-serif;
-  }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dados Pessoais</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: "Poppins", sans-serif;
+    }
 
-  body {
-    background-color: #d9d9d9;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    min-height: 100vh;
-    padding: 10px;
-  }
+body {
+  background: linear-gradient(135deg, #16222A, #3A6073);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
 
-  .celular {
-    background-color: #0f1715;
-    width: 280px;
-    min-height: 540px;
-    border-radius: 15px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.4);
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-  }
+.celular {
+  background-color: #fff;
+  width: 320px;
+  min-height: 550px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  animation: fadeIn 0.8s ease;
+}
 
-  header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background-color: #0f1715;
-    color: #fff;
-    padding: 12px 15px;
-    font-size: 1rem;
-    border-bottom: 1px solid #2b2b2b;
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
   }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
-  header i {
-    font-size: 1.2rem;
-    cursor: pointer;
-  }
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(90deg, #0f1715, #b22b2b);
+  color: #fff;
+  padding: 14px 16px;
+  font-size: 1rem;
+}
 
-  .conteudo {
-    flex: 1;
-    background-color: #f8f8f8;
-    margin: 25px 15px;
-    padding: 15px;
-    border-radius: 10px;
-  }
+header a {
+  color: #fff;
+  text-decoration: none;
+}
 
-  .conteudo h2 {
-    color: #141414;
-    text-align: center;
-    font-size: 1rem;
-    margin-bottom: 15px;
-  }
+header i {
+  font-size: 1.3rem;
+  cursor: pointer;
+}
 
-  label {
-    display: block;
-    font-size: 0.85rem;
-    color: #111;
-    margin-bottom: 4px;
-    margin-top: 10px;
-  }
+.conteudo {
+  flex: 1;
+  background-color: #f9f9f9;
+  margin: 20px;
+  padding: 15px;
+  border-radius: 12px;
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.05);
+  overflow-y: auto;
+}
 
-  input {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #bbb;
-    border-radius: 6px;
-    outline: none;
-    font-size: 0.9rem;
-  }
+.conteudo h2 {
+  color: #222;
+  text-align: center;
+  font-size: 1.1rem;
+  margin-bottom: 15px;
+}
 
-  input:focus {
-    border-color: #b22b2b;
-  }
+label {
+  display: block;
+  font-size: 0.85rem;
+  color: #333;
+  margin-bottom: 4px;
+  margin-top: 10px;
+  font-weight: 500;
+}
 
-  button {
-    width: 100%;
-    margin-top: 20px;
-    background-color: #b22b2b;
-    color: #fff;
-    border: none;
-    padding: 8px;
-    border-radius: 8px;
-    font-size: 0.9rem;
-    cursor: pointer;
-    transition: background 0.2s ease;
-  }
+input {
+  width: 100%;
+  padding: 9px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  outline: none;
+  font-size: 0.9rem;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  background-color: #f3f3f3;
+}
 
-  button:hover {
-    background-color: #941f1f;
-  }
+input:focus {
+  border-color: #b22b2b;
+  box-shadow: 0 0 6px rgba(178, 43, 43, 0.3);
+  background-color: #fff;
+}
 
-  footer {
-    background-color: #0f1715;
-    color: #fff;
-    text-align: center;
-    padding: 8px;
-    font-size: 0.8rem;
-    border-top: 1px solid #2b2b2b;
-  }
-</style>
+button {
+  width: 100%;
+  margin-top: 20px;
+  background: linear-gradient(90deg, #b22b2b, #8b1e1e);
+  color: #fff;
+  border: none;
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: transform 0.2s, background 0.3s;
+}
+
+button:hover {
+  transform: scale(1.03);
+  background: linear-gradient(90deg, #941f1f, #b22b2b);
+}
+
+.mensagem {
+  text-align: center;
+  color: green;
+  font-weight: 500;
+  font-size: 0.9rem;
+  margin-top: 10px;
+  display: none;
+}
+
+footer {
+  background-color: #0f1715;
+  color: #fff;
+  text-align: center;
+  padding: 10px;
+  font-size: 0.8rem;
+}
+
+  </style>
 </head>
 
 <body>
@@ -121,29 +155,54 @@
       <i class="fa-solid fa-user"></i>
     </header>
 
-    <div class="conteudo">
-      <h2>Atualize suas informações</h2>
 
-      <form>
-        <label for="nome">Nome completo</label>
-        <input type="text" id="nome" placeholder="Digite seu nome">
+<div class="conteudo">
+  <h2>Suas Informações</h2>
+  <form id="formDados">
+    <label for="nome">Nome completo</label>
+    <input type="text" id="nome" value="Ana Laura Cenali" disabled>
 
-        <label for="email">E-mail</label>
-        <input type="email" id="email" placeholder="exemplo@email.com">
+    <label for="email">E-mail</label>
+    <input type="email" id="email" value="ana.cenali@email.com" disabled>
 
-        <label for="telefone">Telefone</label>
-        <input type="tel" id="telefone" placeholder="(00) 00000-0000">
+    <label for="telefone">Telefone</label>
+    <input type="tel" id="telefone" value="(43) 99999-9999" disabled>
 
-        <label for="endereco">Endereço</label>
-        <input type="text" id="endereco" placeholder="Rua, nº, bairro">
+    <label for="endereco">Endereço</label>
+    <input type="text" id="endereco" value="Rua das Flores, 123 - Londrina/PR" disabled>
 
-        <button type="submit">Salvar Alterações</button>
-      </form>
-    </div>
+    <button type="button" id="editarBtn">Editar</button>
+    <div class="mensagem" id="mensagemSucesso">Informações salvas com sucesso!</div>
+  </form>
+</div>
 
-    <footer>
-      <p>© 2025 Sistema de Configurações</p>
-    </footer>
+<footer>
+  <p>© 2025 Sistema de Configurações</p>
+</footer>
+
   </div>
+
+  <script>
+    const form = document.getElementById('formDados');
+    const inputs = form.querySelectorAll('input');
+    const btn = document.getElementById('editarBtn');
+    const msg = document.getElementById('mensagemSucesso');
+    let editando = false;
+
+    btn.addEventListener('click', () => {
+      if (!editando) {
+        inputs.forEach(input => input.disabled = false);
+        btn.textContent = 'Salvar Alterações';
+        editando = true;
+      } else {
+        inputs.forEach(input => input.disabled = true);
+        msg.style.display = 'block';
+        setTimeout(() => msg.style.display = 'none', 3000);
+        btn.textContent = 'Editar';
+        editando = false;
+      }
+    });
+  </script>
+
 </body>
 </html>
