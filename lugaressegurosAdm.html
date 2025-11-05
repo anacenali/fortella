@@ -7,7 +7,7 @@
   <style>
     * {
       box-sizing: border-box;
-      font-family: "Poppins", sans-serif;
+      font-family: "judson", sans-serif;
     }
 
     body {
@@ -64,6 +64,7 @@
       padding: 1.5rem;
       box-shadow: 0 3px 6px rgba(0,0,0,0.2);
       transition: transform 0.2s ease;
+      position: relative;
     }
 
     .card:hover {
@@ -80,7 +81,7 @@
       font-size: 0.9rem;
     }
 
-    .edit-btn {
+    .edit-btn, .add-btn {
       margin-top: 2rem;
       background-color: #780C28;
       color: #fff;
@@ -92,8 +93,40 @@
       transition: background-color 0.3s;
     }
 
-    .edit-btn:hover {
+    .edit-btn:hover, .add-btn:hover {
       background-color: #961b38;
+    }
+
+    /* Botões dos cards */
+    .card-btns {
+      display: flex;
+      gap: 0.8rem;
+      margin-top: 1rem;
+    }
+
+    .delete-btn, .editar-btn {
+      flex: 1;
+      border: none;
+      border-radius: 8px;
+      padding: 0.5rem 1rem;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      color: #fff;
+    }
+
+    .delete-btn {
+      background-color: #c0392b;
+    }
+    .delete-btn:hover {
+      background-color: #e74c3c;
+    }
+
+    .editar-btn {
+      background-color: #527D6F;
+    }
+    .editar-btn:hover {
+      background-color: #6ea38c;
     }
 
     /* Modal */
@@ -115,6 +148,7 @@
       width: 400px;
       color: #0F171C;
       box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+      position: relative;
     }
 
     .modal-content h2 {
@@ -147,8 +181,10 @@
     }
 
     .close {
-      float: right;
-      font-size: 1.3rem;
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 1.5rem;
       cursor: pointer;
       color: #aaa;
     }
@@ -168,32 +204,32 @@
   <main>
     <div class="card-container" id="lugaresContainer"></div>
 
-    <button class="edit-btn" id="editarBtn">Adicionar Lugar</button>
+    <button class="add-btn" id="adicionarBtn">Adicionar Lugar</button>
   </main>
 
   <!-- Modal -->
   <div id="modal" class="modal">
     <div class="modal-content">
       <span class="close" id="closeModal">&times;</span>
-      <h2>Adicionar Lugar</h2>
+      <h2 id="modalTitulo">Adicionar Lugar</h2>
 
       <label>Nome do Lugar</label>
-      <input type="text" id="nomeLugar" placeholder="Ex: Escola Municipal João da Silva">
+      <input type="text" id="nomeLugar">
 
       <label>Descrição</label>
-      <input type="text" id="descricaoLugar" placeholder="Local monitorado, com presença de segurança.">
+      <input type="text" id="descricaoLugar">
 
       <label>Endereço</label>
-      <input type="text" id="enderecoLugar" placeholder="Rua das Flores, 123 - Londrina - PR">
+      <input type="text" id="enderecoLugar">
 
       <label>Latitude</label>
-      <input type="text" id="latitudeLugar" placeholder="-23.304600">
+      <input type="text" id="latitudeLugar">
 
       <label>Longitude</label>
-      <input type="text" id="longitudeLugar" placeholder="-51.169200">
+      <input type="text" id="longitudeLugar">
 
       <label>Raio de Segurança (m)</label>
-      <input type="number" id="raioLugar" placeholder="150">
+      <input type="number" id="raioLugar">
 
       <button id="salvarLugar">Salvar</button>
     </div>
@@ -228,6 +264,13 @@
     ];
 
     const container = document.getElementById("lugaresContainer");
+    const modal = document.getElementById("modal");
+    const btnAdicionar = document.getElementById("adicionarBtn");
+    const closeModal = document.getElementById("closeModal");
+    const salvarLugar = document.getElementById("salvarLugar");
+    const modalTitulo = document.getElementById("modalTitulo");
+
+    let editIndex = null;
 
     function renderizarLugares() {
       container.innerHTML = "";
@@ -242,19 +285,45 @@
           <p>Latitude: ${lugar.latitude}</p>
           <p>Longitude: ${lugar.longitude}</p>
           <p>Raio de Segurança: ${lugar.raio} metros</p>
+          <div class="card-btns">
+            <button class="editar-btn" onclick="editarLugar(${index})">Editar</button>
+            <button class="delete-btn" onclick="excluirLugar(${index})">Excluir</button>
+          </div>
         `;
         container.appendChild(card);
       });
     }
 
-    renderizarLugares();
+    function excluirLugar(index) {
+      if (confirm("Tem certeza que deseja excluir este lugar?")) {
+        lugares.splice(index, 1);
+        renderizarLugares();
+      }
+    }
 
-    const modal = document.getElementById("modal");
-    const btn = document.getElementById("editarBtn");
-    const closeModal = document.getElementById("closeModal");
-    const salvarLugar = document.getElementById("salvarLugar");
+    function editarLugar(index) {
+      const lugar = lugares[index];
+      editIndex = index;
 
-    btn.onclick = () => modal.style.display = "flex";
+      document.getElementById("nomeLugar").value = lugar.nome;
+      document.getElementById("descricaoLugar").value = lugar.descricao;
+      document.getElementById("enderecoLugar").value = lugar.endereco;
+      document.getElementById("latitudeLugar").value = lugar.latitude;
+      document.getElementById("longitudeLugar").value = lugar.longitude;
+      document.getElementById("raioLugar").value = lugar.raio;
+
+      modalTitulo.textContent = "Editar Lugar";
+      modal.style.display = "flex";
+    }
+
+    function abrirModalAdicionar() {
+      editIndex = null;
+      modalTitulo.textContent = "Adicionar Lugar";
+      document.querySelectorAll("#modal input").forEach(input => input.value = "");
+      modal.style.display = "flex";
+    }
+
+    btnAdicionar.onclick = abrirModalAdicionar;
     closeModal.onclick = () => modal.style.display = "none";
     window.onclick = e => { if (e.target == modal) modal.style.display = "none"; }
 
@@ -268,15 +337,22 @@
         raio: document.getElementById("raioLugar").value
       };
 
-      if (novoLugar.nome && novoLugar.descricao) {
-        lugares.push(novoLugar);
-        renderizarLugares();
-        modal.style.display = "none";
-        document.querySelectorAll("#modal input").forEach(input => input.value = "");
-      } else {
-        alert("Preencha pelo menos o nome e a descrição do lugar.");
+      if (!novoLugar.nome || !novoLugar.descricao) {
+        alert("Preencha pelo menos o nome e a descrição.");
+        return;
       }
+
+      if (editIndex !== null) {
+        lugares[editIndex] = novoLugar;
+      } else {
+        lugares.push(novoLugar);
+      }
+
+      renderizarLugares();
+      modal.style.display = "none";
     };
+
+    renderizarLugares();
   </script>
 </body>
 </html>
