@@ -24,7 +24,7 @@
 
     /* ======== TELAS ======== */
     .tela {
-      width: 320px;
+      width: 280px;
       background-color: #0f171c;
       color: #fff;
       text-align: center;
@@ -125,7 +125,7 @@
 
     header i {
       font-size: 20px;
-      color: #a1cf82;
+      color: #ffffff;
       cursor: pointer;
       transition: color 0.3s;
     }
@@ -192,7 +192,12 @@
 <body>
   <!-- Tela de lista de contatos -->
   <div id="tela-lista" class="tela ativa">
-    <h2>Contatos de Emergência</h2>
+    <header>
+      <i class="fa-solid fa-arrow-left" id="btnVoltarLista"></i>
+      <h2>Contatos de Emergência</h2>
+      <span></span>
+    </header>
+
     <div class="lista-contatos" id="listaContatos"></div>
     <button id="btnAdicionar">Adicionar Contato</button>
   </div>
@@ -223,16 +228,20 @@
     const telaNovo = document.getElementById("tela-novo");
     const btnAdicionar = document.getElementById("btnAdicionar");
     const btnVoltar = document.getElementById("btnVoltar");
+    const btnVoltarLista = document.getElementById("btnVoltarLista");
     const formContato = document.getElementById("formContato");
     const listaContatos = document.getElementById("listaContatos");
 
     let contatos = JSON.parse(localStorage.getItem("contatos")) || [];
 
-    // Muda de tela
-    btnAdicionar.addEventListener("click", () => mudarTela(telaLista, telaNovo));
-    btnVoltar.addEventListener("click", () => window.location.href = "nova.html");
+    // Botão voltar da tela principal
+    btnVoltarLista.addEventListener("click", () => window.location.href = "nova.html");
 
-    // Salva contato
+    // Troca de telas
+    btnAdicionar.addEventListener("click", () => mudarTela(telaLista, telaNovo));
+    btnVoltar.addEventListener("click", () => mudarTela(telaNovo, telaLista));
+
+    // Salvar contato
     formContato.addEventListener("submit", (e) => {
       e.preventDefault();
       const nome = document.getElementById("nome").value.trim();
@@ -274,14 +283,12 @@
       });
     }
 
-    // Remove contato
     function removerContato(i) {
       contatos.splice(i, 1);
       localStorage.setItem("contatos", JSON.stringify(contatos));
       atualizarLista();
     }
 
-    // Troca de telas
     function mudarTela(saindo, entrando) {
       saindo.classList.remove("ativa");
       setTimeout(() => {
