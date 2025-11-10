@@ -1,29 +1,46 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SOS</title>
+  <link href="https://fonts.googleapis.com/css2?family=Judson:wght@400;700&family=Poppins:wght@400;500;600&display=swap"
+    rel="stylesheet" />
+
   <style>
-    /* ====== ESTILOS GERAIS ====== */
+    /* ===== ESTILOS GERAIS ===== */
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #0e1412;
+      font-family: judson, sans-serif;
+      background-color: #d9e4df;
       color: white;
       height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* ===== CELULAR (CONTAINER PRINCIPAL) ===== */
+    .celular {
+      background-color: #c9d9d3;
+      width: 300px;
+      min-height: 560px;
+      border-radius: 20px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.35);
+      overflow: hidden;
       display: flex;
       flex-direction: column;
     }
 
-    /* ====== TOPO ====== */
+    /* ===== TOPO ===== */
     .top-bar {
       background-color: #111816;
       display: flex;
       align-items: center;
       padding: 10px;
       border-bottom: 1px solid #333;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
     }
 
     .back-btn {
@@ -37,7 +54,7 @@
     }
 
     .back-btn:hover {
-      transform: scale(1.2);
+      transform: scale(1.15);
     }
 
     h1 {
@@ -48,26 +65,27 @@
       letter-spacing: 1px;
     }
 
-    /* ====== CONTEÚDO PRINCIPAL ====== */
+    /* ===== CONTEÚDO PRINCIPAL ===== */
     .content {
       flex: 1;
       display: flex;
       justify-content: center;
       align-items: center;
       padding: 20px;
+      background-color: #0e1412;
     }
 
     .sos-container {
       background-color: #6e0d26;
       padding: 40px;
-      border-radius: 20px;
+      border-radius: 25px;
       display: flex;
       justify-content: center;
       align-items: center;
-      box-shadow: 0 0 25px rgba(110, 13, 38, 0.5);
+      box-shadow: 0 0 25px rgba(110, 13, 38, 0.6);
     }
 
-    /* ====== BOTÃO SOS ====== */
+    /* ===== BOTÃO SOS ===== */
     .sos-button {
       background-color: #fff8f8;
       border: none;
@@ -79,58 +97,85 @@
       font-weight: bold;
       position: relative;
       cursor: pointer;
-      transition: transform 0.2s ease, background 0.3s;
-      box-shadow: 0 0 15px rgba(255, 0, 0, 0.2);
+      transition: transform 0.25s ease, background 0.3s;
+      box-shadow: 0 0 20px rgba(255, 0, 0, 0.25);
+      animation: pulse 2s infinite;
     }
 
     .sos-button:hover {
       transform: scale(1.05);
+      background-color: #ffefef;
     }
 
     .sos-button:active {
-      background-color: #ffdddd;
       transform: scale(0.95);
+      background-color: #ffdddd;
     }
 
-    /* ====== PONTO VERMELHO PISCANTE ====== */
+    /* ===== PONTO VERMELHO PISCANTE ===== */
     .dot {
       position: absolute;
       bottom: 15px;
       right: 20px;
-      width: 8px;
-      height: 8px;
+      width: 10px;
+      height: 10px;
       background-color: red;
       border-radius: 50%;
       animation: blink 1s infinite;
     }
 
     @keyframes blink {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.2; }
+
+      0%,
+      100% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0.2;
+      }
+    }
+
+    /* ===== ANIMAÇÃO DE PULSO ===== */
+    @keyframes pulse {
+      0% {
+        box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.4);
+      }
+
+      70% {
+        box-shadow: 0 0 0 18px rgba(255, 0, 0, 0);
+      }
+
+      100% {
+        box-shadow: 0 0 0 0 rgba(255, 0, 0, 0);
+      }
     }
   </style>
 </head>
-<body>
-  <header class="top-bar">
-    <button class="back-btn" onclick="history.back()">←</button>
-    <h1>SOS</h1>
-  </header>
 
-  <main class="content">
-    <div class="sos-container">
-      <button id="sosButton" class="sos-button">
-        SOS
-        <span class="dot"></span>
-      </button>
-    </div>
-  </main>
+<body>
+  <div class="celular">
+    <header class="top-bar">
+      <button class="back-btn" onclick="window.location.href='coracao.html'">←</button>
+      <h1>SOS</h1>
+    </header>
+
+    <main class="content">
+      <div class="sos-container">
+        <button id="sosButton" class="sos-button">
+          SOS
+          <span class="dot"></span>
+        </button>
+      </div>
+    </main>
+  </div>
 
   <script>
     const sosButton = document.getElementById('sosButton');
-
     sosButton.addEventListener('click', () => {
       alert('⚠️ Pedido de ajuda enviado! A equipe de emergência foi notificada.');
     });
   </script>
 </body>
+
 </html>
