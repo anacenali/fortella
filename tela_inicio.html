@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Início - Fortella</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Judson:wght@400;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
   <script src="https://kit.fontawesome.com/1b4a8b1f5c.js" crossorigin="anonymous"></script>
 
@@ -139,7 +139,7 @@
     <header>
       <i class="fa-solid fa-house"></i>
       <span>Tela de início</span>
-      <i class="fa-solid fa-user"></i>
+      <i class="fa-solid fa-user" onclick="abrirConfiguracoes()"></i>
     </header>
 
     <!-- imagem diária -->
@@ -178,6 +178,9 @@
     // Redireciona para a página início.html
     function abrirInicio() {
       window.location.href = "inicio.html";
+    }
+    function abrirConfiguracoes() {
+      window.location.href = "configuracoes.html";
     }
   </script>
 
