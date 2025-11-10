@@ -32,7 +32,7 @@
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
     display: flex;
     flex-direction: column;
-    justify-content: space-between; /* empurra o footer para o fim */
+    justify-content: space-between;
     overflow: hidden;
     animation: fadeIn 0.8s ease;
   }
@@ -52,12 +52,18 @@
     cursor: pointer;
   }
 
+  header .titulo {
+    flex-grow: 1;
+    text-align: center;
+    font-weight: 600;
+  }
+
   .caixa {
     background-color: #f8f8f8;
     margin: 25px 15px;
     padding: 15px;
     border-radius: 10px;
-    flex-grow: 1; /* ocupa o espaço do meio */
+    flex-grow: 1;
   }
 
   .opcao {
@@ -98,8 +104,8 @@
 <body>
   <div class="celular">
     <header>
-      <i class="fa-solid fa-user"></i>
-      <span>Configurações</span>
+      <i class="fa-solid fa-arrow-left" onclick="voltar()"></i>
+      <span class="titulo">Configurações</span>
       <i class="fa-solid fa-gear"></i>
     </header>
 
@@ -115,5 +121,11 @@
       <p>© 2025 Sistema de Configurações</p>
     </footer>
   </div>
+
+  <script>
+    function voltar() {
+      window.history.back(); // volta à página anterior
+    }
+  </script>
 </body>
 </html>
