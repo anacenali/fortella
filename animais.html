@@ -65,6 +65,7 @@
     header i.fa-user {
       font-size: 1.3rem;
       color: #0f241e;
+      cursor: pointer;
     }
 
     /* Imagem diária */
@@ -103,7 +104,11 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+      cursor: pointer;
+      transition: background 0.2s ease;
     }
+
+
 
     .secao i {
       color: #fff;
@@ -145,7 +150,7 @@
     </div>
 
     <div class="secao">
-      <h4>Animais</h4>
+      <h4 onclick="abrirLugarSeguro()">Animais</h4>
       <i class="fa-solid fa-paw"></i>
     </div>
 
@@ -160,16 +165,22 @@
   </div>
 
   <script>
-    // Redireciona para tela_inicio.html ao clicar na seta
+    // Redireciona para tela_inicio.html
     function voltarInicio() {
       window.location.href = "inicio.html";
     }
 
+    // Redireciona para dados pessoais
     function dadosPessoais() {
       window.location.href = "dados.html";
     }
 
-    // Ao clicar em uma imagem, salva o link e redireciona para a tela de detalhe
+    // Redireciona ao clicar na seção "Animais"
+    function abrirLugarSeguro() {
+      window.location.href = "lugarseguro.html";
+    }
+
+    // Redireciona ao clicar em uma imagem
     const imagens = document.querySelectorAll('.galeria img');
     imagens.forEach(img => {
       img.addEventListener('click', () => {

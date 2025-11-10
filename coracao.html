@@ -95,6 +95,8 @@
       align-items: center;
       justify-content: space-between;
     }
+    
+
 
     .secao i {
       color: #fff;
@@ -144,7 +146,7 @@
     </div>
 
     <div class="secao">
-      <h4>Coração</h4>
+      <h4 onclick="abrirBotaoSos()">Coração</h4>
       <i class="fa-solid fa-heart"></i>
     </div>
 
@@ -166,6 +168,10 @@
 
     function dadosPessoais() {
       window.location.href = "dados.html";
+    }
+        
+    function abrirBotaoSos() {
+      window.location.href = "sos.html";
     }
 
     // Quando clicar em uma imagem, guarda o link e vai pra tela de detalhe
