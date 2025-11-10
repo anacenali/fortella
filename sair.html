@@ -14,76 +14,86 @@
   }
 
   body {
-    background-color: #d9d9d9;
+    background: linear-gradient(135deg, #16222A, #3A6073);
     display: flex;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
     min-height: 100vh;
-    padding: 10px;
   }
 
   .celular {
-    background-color: #0f1715;
+    background-color: #fff;
     width: 280px;
-    min-height: 540px;
-    border-radius: 15px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.4);
+    min-height: 550px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
     display: flex;
     flex-direction: column;
     overflow: hidden;
+    animation: fadeIn 0.8s ease;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
   }
 
   header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: #0f1715;
+    background: linear-gradient(90deg, #0f1715, #b22b2b);
     color: #fff;
-    padding: 12px 15px;
+    padding: 14px 16px;
     font-size: 1rem;
-    border-bottom: 1px solid #2b2b2b;
+  }
+
+  header a {
+    color: #fff;
+    text-decoration: none;
   }
 
   header i {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     cursor: pointer;
   }
 
   .conteudo {
     flex: 1;
-    background-color: #f8f8f8;
-    margin: 25px 15px;
-    padding: 15px;
-    border-radius: 10px;
+    background-color: #f9f9f9;
+    margin: 20px;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.05);
     text-align: center;
   }
 
   .conteudo h2 {
-    color: #141414;
-    font-size: 1rem;
+    color: #222;
+    font-size: 1.1rem;
     margin-bottom: 15px;
   }
 
   .conteudo p {
     color: #333;
-    font-size: 0.85rem;
+    font-size: 0.9rem;
     margin-bottom: 25px;
   }
 
   .botoes {
     display: flex;
     justify-content: space-between;
-    gap: 10px;
+    gap: 12px;
   }
 
   button {
     flex: 1;
-    padding: 8px;
+    padding: 10px;
     border: none;
-    border-radius: 8px;
+    border-radius: 10px;
     font-size: 0.9rem;
     cursor: pointer;
-    transition: background 0.2s ease;
+    transition: transform 0.2s, background 0.3s;
   }
 
   .btn-voltar {
@@ -93,24 +103,25 @@
 
   .btn-voltar:hover {
     background-color: #aaa;
+    transform: scale(1.03);
   }
 
   .btn-sair {
-    background-color: #b22b2b;
+    background: linear-gradient(90deg, #b22b2b, #8b1e1e);
     color: #fff;
   }
 
   .btn-sair:hover {
-    background-color: #941f1f;
+    background: linear-gradient(90deg, #941f1f, #b22b2b);
+    transform: scale(1.03);
   }
 
   footer {
     background-color: #0f1715;
     color: #fff;
     text-align: center;
-    padding: 8px;
+    padding: 10px;
     font-size: 0.8rem;
-    border-top: 1px solid #2b2b2b;
   }
 </style>
 </head>
@@ -143,7 +154,7 @@
       const confirmacao = confirm("Deseja realmente sair da conta?");
       if (confirmacao) {
         alert("Você saiu da conta com sucesso!");
-        window.location.href = "cadastro.html"; // redireciona após sair
+        window.location.href = "cadastro.html";
       }
     }
   </script>
