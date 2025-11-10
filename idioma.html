@@ -6,6 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Idioma</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Judson:wght@400;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+
   <style>
     * {
       box-sizing: border-box;
@@ -24,7 +26,7 @@
 
     .celular {
       background-color: #fff;
-      width: 320px;
+      width: 280px;
       min-height: 550px;
       border-radius: 20px;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
@@ -141,15 +143,13 @@
 
 <body>
   <div class="celular">
-    <header>
-      <a href="configuracoes.html"><i class="fa-solid fa-arrow-left"></i></a>
-      <span>Idioma</span>
-      <i class="fa-solid fa-language"></i>
-    </header>
+
+    <header> <a href="configuracoes.html"><i class="fa-solid fa-arrow-left"></i></a> <span>Idioma</span> <i
+        class="fa-solid fa-language"></i> </header>
 
     <div class="conteudo">
-      <h2>Selecione o Idioma</h2>
-      <select id="idioma">
+
+      <h2>Selecione o Idioma</h2> <select id="idioma">
         <option value="pt-BR">Português (Brasil)</option>
         <option value="en-US">Inglês (EUA)</option>
         <option value="es-ES">Espanhol (Espanha)</option>
@@ -164,12 +164,11 @@
       <p>© 2025 Sistema de Configurações</p>
     </footer>
 
-    <script>
-      function salvarIdioma() {
-        const idioma = document.getElementById("idioma").value;
-        alert("Idioma alterado para: " + idioma);
-      }
+    <script> function salvarIdioma() 
+    { const idioma = document.getElementById("idioma").value; 
+    alert("Idioma alterado para: " + idioma); } 
     </script>
+
 </body>
 
 </html>
