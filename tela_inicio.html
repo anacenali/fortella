@@ -2,21 +2,22 @@
 <html lang="pt-BR">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Início - Fortella</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Judson:wght@400;700&family=Poppins:wght@400;500;600&display=swap"
-        rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Início - Fortella</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Judson:wght@400;700&family=Poppins:wght@400;500;600&display=swap"
+    rel="stylesheet">
+  <script src="https://kit.fontawesome.com/1b4a8b1f5c.js" crossorigin="anonymous"></script>
 
-    <style>
+  <style>
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: "judson", sans-serif;
+      font-family: "Judson", sans-serif;
     }
 
     body {
@@ -81,21 +82,34 @@
       box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.3);
     }
 
-    /* Seção Coração */
+    /* Seção do menu */
     .secao {
       background-color: #4e7f73;
       color: #fff;
       font-weight: 500;
       margin: 0 10px;
       border-radius: 6px;
-      padding: 6px 10px;
+      padding: 8px 10px;
       display: flex;
       align-items: center;
       justify-content: space-between;
     }
 
-    .secao i {
-      color: #fff;
+    /* Ícone de menu (três tracinhos) */
+    .menu-btn {
+      width: 25px;
+      height: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      cursor: pointer;
+    }
+
+    .menu-btn span {
+      height: 3px;
+      width: 100%;
+      background-color: white;
+      border-radius: 2px;
     }
 
     /* Galeria */
@@ -117,56 +131,58 @@
     .galeria img:hover {
       transform: scale(1.05);
     }
-    </style>
+  </style>
 </head>
 
 <body>
 
-    <div class="celular">
-        <!-- topo -->
+  <div class="celular">
+    <!-- topo -->
     <header>
       <i class="fa-solid fa-house"></i>
       <span>Tela de início</span>
       <i class="fa-solid fa-user"></i>
     </header>
 
-        <!-- imagem diária -->
+    <!-- imagem diária -->
     <div class="imagem-diaria">
       <p>Imagem diária</p>
       <img src="img/imagem_diaria.png" alt="Imagem diária">
     </div>
 
-        <!-- botão menu -->
+    <!-- botão menu (3 tracinhos empilhados) -->
     <div class="secao">
       <h4>Tela de início</h4>
-      <button onclick="abrirInicio()"></button>
-      <i class="fa-solid fa-arrow-left"></i>
+      <div class="menu-btn" onclick="abrirInicio()">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
     </div>
 
-        <!-- galeria de desenhos -->
-        <div class="galeria">
-            <img src="baldeFlor.png" alt="Desenho 1" onclick="abrirDesenho('desenho1.jpg')">
-            <img src="doisPeixes.png" alt="Desenho 2" onclick="abrirDesenho('desenho2.jpg')">
-            <img src="fundoMar.png" alt="Desenho 3" onclick="abrirDesenho('desenho3.jpg')">
-            <img src="coração.png" alt="Desenho 4" onclick="abrirDesenho('desenho4.jpg')">
-            <img src="camaleao.png" alt="Desenho 5" onclick="abrirDesenho('desenho5.jpg')">
-            <img src="polvo.png" alt="Desenho 6" onclick="abrirDesenho('desenho6.jpg')">
-            <img src="borboleta.png" alt="Desenho 6" onclick="abrirDesenho('desenho6.jpg')">
-        </div>
+    <!-- galeria de desenhos -->
+    <div class="galeria">
+      <img src="baldeFlor.png" alt="Desenho 1" onclick="abrirDesenho('desenho1.jpg')">
+      <img src="doisPeixes.png" alt="Desenho 2" onclick="abrirDesenho('desenho2.jpg')">
+      <img src="fundoMar.png" alt="Desenho 3" onclick="abrirDesenho('desenho3.jpg')">
+      <img src="coração.png" alt="Desenho 4" onclick="abrirDesenho('desenho4.jpg')">
+      <img src="camaleao.png" alt="Desenho 5" onclick="abrirDesenho('desenho5.jpg')">
+      <img src="polvo.png" alt="Desenho 6" onclick="abrirDesenho('desenho6.jpg')">
+      <img src="borboleta.png" alt="Desenho 7" onclick="abrirDesenho('desenho7.jpg')">
     </div>
+  </div>
 
+  <script>
+    // Abre a tela com o desenho selecionado
+    function abrirDesenho(img) {
+      window.location.href = "desenho.html?img=" + img;
+    }
 
-    <script>
-        // Abre a tela com o desenho selecionado
-        function abrirDesenho(img) {
-            window.location.href = "desenho.html?img=" + img;
-        }
-
-        // Abre a página inicial (menu lateral)
-        function abrirInicio() {
-            window.location.href = "inicio.html";
-        }
-    </script>
+    // Redireciona para a página início.html
+    function abrirInicio() {
+      window.location.href = "inicio.html";
+    }
+  </script>
 
 </body>
 
